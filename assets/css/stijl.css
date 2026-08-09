@@ -1,0 +1,165 @@
+/*
+ * Algemene themastijlen. Alles wat met kleur, typografie en ruimte te maken
+ * heeft staat in theme.json — hier staat alleen wat daar niet in past.
+ */
+
+/* --- Toegankelijkheid --- */
+
+.lr-skip {
+	position: absolute;
+	inset-inline-start: 0.5rem;
+	inset-block-start: -100%;
+	z-index: 999;
+	padding: 0.75rem 1.25rem;
+	background-color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+	text-decoration: none;
+	transition: inset-block-start 180ms ease;
+}
+
+.lr-skip:focus {
+	inset-block-start: 0.5rem;
+}
+
+:where(a, button, summary, input, textarea, select):focus-visible {
+	outline: 3px solid var(--wp--preset--color--secondary);
+	outline-offset: 2px;
+}
+
+/* --- Beeld --- */
+
+img {
+	max-inline-size: 100%;
+	block-size: auto;
+}
+
+.wp-block-image img {
+	border-radius: 3px;
+}
+
+/* --- Koptekst --- */
+
+.lr-header {
+	position: relative;
+	z-index: 10;
+}
+
+.lr-header--over-beeld {
+	position: absolute;
+	inset-inline: 0;
+	inset-block-start: 0;
+	color: var(--wp--preset--color--sneeuw);
+}
+
+.lr-header--over-beeld a {
+	color: inherit;
+}
+
+/* --- FAQ --- */
+
+.lr-faq__item {
+	border-block-end: 1px solid var(--wp--preset--color--tertiary);
+}
+
+.lr-faq__vraag {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-block: 1.15rem;
+	font-family: var(--wp--preset--font-family--kop);
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 500;
+	cursor: pointer;
+	list-style: none;
+}
+
+.lr-faq__vraag::-webkit-details-marker {
+	display: none;
+}
+
+.lr-faq__vraag::after {
+	content: "";
+	flex: none;
+	inline-size: 0.65rem;
+	block-size: 0.65rem;
+	border-inline-end: 2px solid var(--wp--preset--color--primary);
+	border-block-end: 2px solid var(--wp--preset--color--primary);
+	rotate: 45deg;
+	translate: 0 -0.2rem;
+	transition: rotate 220ms ease;
+}
+
+.lr-faq__item[open] .lr-faq__vraag::after {
+	rotate: 225deg;
+	translate: 0 0.15rem;
+}
+
+.lr-faq__antwoord {
+	padding-block-end: 1.35rem;
+	max-inline-size: 62ch;
+}
+
+/* --- Kenmerkenrij (wat is inbegrepen) --- */
+
+.lr-kenmerken {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: var(--wp--preset--spacing--30);
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.lr-kenmerken li {
+	padding: var(--wp--preset--spacing--30);
+	background-color: var(--wp--preset--color--tertiary);
+	border-radius: 3px;
+}
+
+.lr-kenmerken strong {
+	display: block;
+	margin-block-end: 0.35em;
+	font-family: var(--wp--preset--font-family--kop);
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 500;
+}
+
+/* --- Formulier --- */
+
+.wp-block-post-content input:not([type="submit"]),
+.wp-block-post-content textarea,
+.wp-block-post-content select {
+	inline-size: 100%;
+	padding: 0.7em 0.9em;
+	border: 1px solid var(--wp--preset--color--tertiary);
+	border-radius: 3px;
+	background-color: var(--wp--preset--color--sneeuw);
+	font-family: inherit;
+	font-size: inherit;
+}
+
+/* --- Voettekst --- */
+
+.lr-footer {
+	background-color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--tertiary);
+}
+
+.lr-footer a {
+	color: var(--wp--preset--color--tertiary);
+}
+
+.lr-footer a:hover {
+	color: var(--wp--preset--color--sneeuw);
+}
+
+/* --- Print --- */
+
+@media print {
+	.lr-panelen,
+	.lr-seizoenswissel,
+	.wp-block-navigation {
+		display: none;
+	}
+}
