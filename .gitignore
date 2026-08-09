@@ -5,3 +5,6 @@ node_modules/
 *.zip
 .vscode/
 .idea/
+
+# Wordt door build.sh gegenereerd uit assets/ , site/css/ en theme.json.
+site/assets/

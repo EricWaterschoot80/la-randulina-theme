@@ -19,6 +19,7 @@ function la_randulina_assets(): void {
 	$bestanden = array(
 		'la-randulina-fonts'    => 'assets/css/fonts.css',
 		'la-randulina-stijl'    => 'assets/css/stijl.css',
+		'la-randulina-secties'  => 'assets/css/secties.css',
 		'la-randulina-panelen'  => 'assets/css/panelen.css',
 		'la-randulina-seizoen'  => 'assets/css/seizoen.css',
 	);

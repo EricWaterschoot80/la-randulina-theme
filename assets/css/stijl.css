@@ -55,6 +55,50 @@ img {
 	color: inherit;
 }
 
+/* --- Logo ---
+ *
+ * Het beeldmerk is de zwaluw met edelweiss (randulina is Reto-Romaans voor
+ * zwaluw). De naam staat er als tekst naast: het aangeleverde logo bevat de
+ * letters in het lettertype Juice ITC, dat bezoekers niet hebben.
+ */
+
+.lr-kop__titel {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	text-decoration: none;
+	color: inherit;
+}
+
+.lr-kop__merk {
+	inline-size: auto;
+	block-size: 2.75rem;
+	filter: drop-shadow(0 1px 10px rgb(15 22 18 / 0.5));
+}
+
+.lr-kop__naam {
+	display: flex;
+	flex-direction: column;
+	font-family: var(--wp--preset--font-family--tekst);
+	font-size: 0.7rem;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+.lr-header--over-beeld .lr-kop__naam {
+	text-shadow: 0 1px 18px rgb(15 22 18 / 0.55);
+}
+
+.lr-kop__naam strong {
+	font-family: var(--wp--preset--font-family--kop);
+	font-size: 1.5rem;
+	font-weight: 500;
+	letter-spacing: -0.01em;
+	text-transform: none;
+}
+
 /* --- FAQ --- */
 
 .lr-faq__item {

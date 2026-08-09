@@ -1,0 +1,145 @@
+/*
+ * Onderdelen die in WordPress uit template parts komen: de koptekst, de
+ * navigatie en de voettekst. Alleen nodig voor de statische bouw.
+ */
+
+/* --- Koptekst --- */
+
+.lr-kop {
+	position: absolute;
+	inset-inline: 0;
+	inset-block-start: 0;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--30);
+	padding: var(--wp--preset--spacing--30);
+	color: var(--wp--preset--color--sneeuw);
+}
+
+.lr-kop__links {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--30);
+	flex: 1;
+}
+
+.lr-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.1rem;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+}
+
+.lr-nav a {
+	color: inherit;
+	text-decoration: none;
+	text-shadow: 0 1px 14px rgb(15 22 18 / 0.6);
+	padding-block: 0.25rem;
+	border-block-end: 1px solid transparent;
+}
+
+.lr-nav a:hover {
+	border-block-end-color: currentColor;
+}
+
+.lr-kop__boeken {
+	flex: none;
+	background-color: var(--wp--preset--color--secondary);
+	color: var(--wp--preset--color--base);
+}
+
+/*
+ * Zodra de panelen stapelen, staat de koptekst niet meer over beeld. De balk
+ * wordt dan donker in plaats van licht: het beeldmerk is wit, en dat zou op
+ * een lichte achtergrond verdwijnen.
+ */
+@media (width < 60rem) {
+	.lr-kop {
+		position: static;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		background-color: var(--wp--preset--color--contrast);
+		color: var(--wp--preset--color--sneeuw);
+	}
+
+	.lr-kop__links {
+		order: 2;
+		flex-basis: 100%;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.85rem;
+	}
+
+	.lr-kop__titel {
+		order: 1;
+	}
+
+	.lr-nav {
+		justify-content: center;
+	}
+}
+
+/* --- Beelden van de panelen ---
+ *
+ * Rechtstreeks als background-image, niet via een custom property. Een
+ * relatieve url() in een variabele wordt namelijk opgelost ten opzichte van
+ * het stylesheet dát hem gebruikt, wat hier tot een dubbel pad zou leiden.
+ * Dit bestand staat in assets/css/, dus ../img/ klopt.
+ */
+
+.seizoen-zomer  .lr-panelen { background-image: url(../img/hero-zomer.jpg); }
+.seizoen-winter .lr-panelen { background-image: url(../img/hero-winter.jpg); }
+
+@media (width < 60rem) {
+	.seizoen-zomer  .lr-paneel--gezinnen { background-image: url(../img/paneel-gezinnen-zomer.jpg); }
+	.seizoen-winter .lr-paneel--gezinnen { background-image: url(../img/paneel-gezinnen-winter.jpg); }
+	.seizoen-zomer  .lr-paneel--actief   { background-image: url(../img/paneel-actief-zomer.jpg); }
+	.seizoen-winter .lr-paneel--actief   { background-image: url(../img/paneel-actief-winter.jpg); }
+	.seizoen-zomer  .lr-paneel--stellen  { background-image: url(../img/paneel-stellen-zomer.jpg); }
+	.seizoen-winter .lr-paneel--stellen  { background-image: url(../img/paneel-stellen-winter.jpg); }
+	.seizoen-zomer  .lr-paneel--groepen  { background-image: url(../img/paneel-groepen-zomer.jpg); }
+	.seizoen-winter .lr-paneel--groepen  { background-image: url(../img/paneel-groepen-winter.jpg); }
+}
+
+/* --- Secties --- */
+
+.lr-sectie {
+	padding-block: var(--wp--preset--spacing--60);
+}
+
+.lr-smal {
+	max-inline-size: 48rem;
+}
+
+/* --- Voettekst --- */
+
+.lr-footer {
+	padding-block: var(--wp--preset--spacing--60) var(--wp--preset--spacing--40);
+}
+
+.lr-footer__raster {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+	gap: var(--wp--preset--spacing--40);
+}
+
+.lr-footer h2 {
+	margin-block: 0 0.6em;
+	font-size: var(--wp--preset--font-size--large);
+	color: var(--wp--preset--color--sneeuw);
+}
+
+.lr-footer p {
+	margin-block: 0 0.9em;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.lr-footer__slot {
+	margin-block: var(--wp--preset--spacing--40) 0;
+	text-align: center;
+	font-size: var(--wp--preset--font-size--small);
+	opacity: 0.7;
+}
