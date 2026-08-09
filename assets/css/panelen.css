@@ -5,6 +5,12 @@
  * Beweeg je over één paneel, dan verduistert de rest. Op smalle schermen
  * bestaat "hover" niet, dus daar worden het vier gestapelde blokken die
  * elk hun eigen foto tonen.
+ *
+ * Let op bij de beeld-variabelen (--lr-beeld-zomer en verwanten): geef daar
+ * altijd een absolute URL mee. Een relatieve url() in een custom property
+ * wordt opgelost ten opzichte van het stylesheet dat hem gebruikt, niet ten
+ * opzichte van de pagina — dan zoekt de browser het beeld naast dit bestand.
+ * De patronen gebruiken daarom get_theme_file_uri().
  */
 
 .lr-panelen {
@@ -30,7 +36,13 @@
 	text-align: center;
 	text-decoration: none;
 	color: var(--wp--preset--color--sneeuw);
-	background-color: rgb(15 22 18 / 0.12);
+	/*
+	 * Deze basistint is niet cosmetisch. Het winterbeeld is een besneeuwd
+	 * dal en dus bijna wit; zonder deze laag valt witte tekst er niet meer
+	 * tegen af. De waarde is gekozen op het lichtste beeld dat we hebben,
+	 * niet op het donkerste.
+	 */
+	background-color: rgb(15 22 18 / 0.3);
 	transition: background-color 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
@@ -54,9 +66,13 @@
 	background-color: rgb(15 22 18 / 0.62);
 }
 
+/*
+ * Het actieve paneel wordt lichter, maar nooit helemaal doorzichtig: ook
+ * daar moet het label leesbaar blijven.
+ */
 .lr-paneel:hover,
 .lr-paneel:focus-visible {
-	background-color: rgb(15 22 18 / 0);
+	background-color: rgb(15 22 18 / 0.1);
 }
 
 .lr-paneel:focus-visible {
