@@ -251,24 +251,32 @@
 /*
  * De boekknop is de enige plek waar de lariks-kleur nog gevuld wordt
  * gebruikt. Eén accent op de pagina, precies waar de bezoeker heen moet.
+ *
+ * De klasse staat hier bewust twee keer. WordPress zet zijn eigen knopstijl
+ * inline weg als `:root :where(.wp-element-button, .wp-block-button__link)`,
+ * en dat heeft precies dezelfde specificiteit als één klasse. Omdat die
+ * inline stijl later in het document staat, wint WordPress dan — de knop
+ * werd daardoor in WordPress transparant terwijl hij op de statische site
+ * wél gekleurd was. Verdubbelen tilt ons er net overheen.
  */
-.lr-boekknop {
+.lr-boekknop.lr-boekknop {
 	background-color: var(--wp--preset--color--secondary);
 	border-color: var(--wp--preset--color--secondary);
 	color: var(--wp--preset--color--base);
 }
 
-.lr-boekknop:hover {
+.lr-boekknop.lr-boekknop:hover {
 	background-color: transparent;
 	border-color: currentColor;
+	color: var(--wp--preset--color--contrast);
 }
 
-.lr-band--donker .lr-boekknop {
+.lr-band--donker .lr-boekknop.lr-boekknop {
 	color: var(--wp--preset--color--base);
 	border-color: var(--wp--preset--color--secondary);
 }
 
-.lr-band--donker .lr-boekknop:hover {
+.lr-band--donker .lr-boekknop.lr-boekknop:hover {
 	background-color: var(--wp--preset--color--base);
 	border-color: var(--wp--preset--color--base);
 	color: var(--wp--preset--color--contrast);
