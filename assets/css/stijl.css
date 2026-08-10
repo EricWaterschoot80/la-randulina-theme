@@ -61,9 +61,9 @@ img {
  * rij afbreekt. Hier zetten we een eigen, krappere maat.
  */
 .lr-header .wp-block-navigation {
-	--wp--style--block-gap: 1.1rem;
-	gap: 1.1rem;
-	font-size: var(--wp--preset--font-size--small);
+	--wp--style--block-gap: clamp(1.2rem, 2vw, 2rem);
+	gap: clamp(1.2rem, 2vw, 2rem);
+	font-size: var(--wp--preset--font-size--medium);
 }
 
 /* Ruime afstand tot het logo: die twee horen niet aan elkaar te plakken. */

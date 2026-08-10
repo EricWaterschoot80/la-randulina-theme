@@ -65,8 +65,8 @@
 
 .lr-persoonlijk {
 	display: grid;
-	grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-	gap: clamp(2rem, 5vw, 4.5rem);
+	grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+	gap: clamp(2rem, 6vw, 6rem);
 	align-items: center;
 }
 
@@ -77,15 +77,47 @@
  */
 .lr-persoonlijk__beeld {
 	position: relative;
-	padding-block-end: 4.5rem;
-	padding-inline-end: 3rem;
+	padding-block-end: clamp(3rem, 7vw, 6rem);
+	padding-inline-end: clamp(2rem, 5vw, 4.5rem);
+}
+
+/*
+ * Op brede schermen loopt de foto links het kader uit tot precies aan de
+ * schermrand. Binnen de 78rem-kolom blijft het een plaatje bij een verhaal;
+ * zo wordt het een beeld waar je in kijkt.
+ *
+ * De marge is de afstand van de schermrand tot de linkerkant van deze kolom:
+ * de helft van wat er naast de 78rem-pagina overblijft, plus de binnenmarge
+ * van die pagina. Percentages werken hier niet — die rekenen tegen de breedte
+ * van de rasterkolom en niet tegen die van de pagina, waardoor de foto ruim
+ * tweehonderd pixel buiten beeld schoot.
+ *
+ * In WordPress komt de foto een pixel of dertig verder door dan op de
+ * statische site: het thema gebruikt useRootPaddingAwareAlignments, waardoor
+ * er nog een laag marge omheen zit die deze berekening niet kent. Op een foto
+ * van ruim zevenhonderd pixel breed valt dat niet op, en er ontstaat geen
+ * horizontale schuifbalk — maar het verklaart waarom de twee net verschillen.
+ */
+@media (width >= 64rem) {
+	.lr-persoonlijk__beeld {
+		margin-inline-start: calc(
+			-1 * (max(0px, (100vw - 78rem) / 2) + var(--wp--preset--spacing--30))
+		);
+	}
 }
 
 .lr-persoonlijk__beeld img {
 	display: block;
 	inline-size: 100%;
 	block-size: auto;
-	border-radius: 3px;
+	border-radius: 2px;
+}
+
+/* Een hogere uitsnede: het pand krijgt lucht en ondergrond mee. */
+.lr-persoonlijk__beeld > figure:first-child img {
+	aspect-ratio: 5 / 4;
+	object-fit: cover;
+	object-position: center 42%;
 }
 
 .lr-persoonlijk__beeld figure {
@@ -96,9 +128,9 @@
 	position: absolute;
 	inset-block-end: 0;
 	inset-inline-end: 0;
-	inline-size: 46%;
-	box-shadow: 0 0 0 8px var(--wp--preset--color--base);
-	border-radius: 3px;
+	inline-size: 44%;
+	box-shadow: 0 0 0 clamp(8px, 1vw, 14px) var(--wp--preset--color--base);
+	border-radius: 2px;
 	overflow: hidden;
 }
 
@@ -151,9 +183,10 @@
 	}
 
 	.lr-persoonlijk__beeld {
+		margin-inline-start: 0;
 		padding-block-end: 3rem;
 		padding-inline-end: 2rem;
-		max-inline-size: 32rem;
+		max-inline-size: 34rem;
 	}
 }
 
