@@ -8,3 +8,7 @@ node_modules/
 
 # Wordt door build.sh gegenereerd uit assets/ , site/css/ en theme.json.
 site/assets/
+
+# Samengestelde kopie van het thema om WordPress mee te draaien.
+# wp/blueprint.json hoort er wél in — dat beschrijft de hele site.
+wp/themes/

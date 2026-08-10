@@ -55,6 +55,26 @@ img {
 	color: inherit;
 }
 
+/*
+ * Het navigatieblok hanteert standaard een ruime afstand tussen de items,
+ * waardoor het in de koptekst meer dan de helft van de breedte opeist en de
+ * rij afbreekt. Hier zetten we een eigen, krappere maat.
+ */
+.lr-header .wp-block-navigation {
+	--wp--style--block-gap: 1.1rem;
+	gap: 1.1rem;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.lr-header .wp-block-navigation .wp-block-navigation-item__content {
+	text-decoration: none;
+}
+
+.lr-header .wp-block-navigation .wp-block-navigation-item__content:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.35em;
+}
+
 /* --- Logo ---
  *
  * Het beeldmerk is de zwaluw met edelweiss (randulina is Reto-Romaans voor

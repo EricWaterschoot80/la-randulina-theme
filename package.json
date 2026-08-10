@@ -1,0 +1,25 @@
+{
+  "name": "la-randulina",
+  "version": "0.2.0",
+  "description": "Website voor Familielodge La Randulina — WordPress blocktheme plus statische site",
+  "scripts": {
+    "build": "bash build.sh",
+    "start": "npm run build && wp-playground-cli server --port=8881 --mount \"$PWD/wp/themes/la-randulina:/wordpress/wp-content/themes/la-randulina\" --blueprint wp/blueprint.json --login",
+    "site": "npm run build && npx --yes serve site -l 8788"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EricWaterschoot80/la-randulina-theme.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EricWaterschoot80/la-randulina-theme/issues"
+  },
+  "homepage": "https://github.com/EricWaterschoot80/la-randulina-theme#readme",
+  "devDependencies": {
+    "@wp-now/wp-now": "^0.1.75",
+    "@wp-playground/cli": "^3.1.48"
+  },
+  "private": true
+}

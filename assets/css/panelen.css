@@ -18,7 +18,15 @@
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	min-height: min(88svh, 60rem);
-	margin-inline: calc(-1 * var(--wp--preset--spacing--30));
+	/*
+	 * Dit blok gaat van rand tot rand en staat bovenaan de pagina. Geen
+	 * negatieve zijmarges: in WordPress regelt alignfull de volle breedte al,
+	 * en een negatieve marge maakt het blok dan bréder dan het venster.
+	 * De marge bovenaan moet weg omdat WordPress standaard blokafstand
+	 * toevoegt, waardoor de paginakleur onder de koptekst doorschemert.
+	 */
+	margin-block-start: 0;
+	margin-inline: 0;
 	background-color: var(--wp--preset--color--contrast);
 	background-image: var(--lr-panelen-beeld);
 	background-size: cover;

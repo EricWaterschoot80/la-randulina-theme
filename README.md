@@ -17,15 +17,44 @@ bash build.sh          # bouwt site/ , klaar om te deployen
 
 ---
 
-## Over inloggen — belangrijk
+## WordPress starten en inloggen
 
-**Er bestaat op dit moment geen WordPress-site en dus ook geen login.** Er is nog niets geïnstalleerd. Dat is geen omissie, het volgt uit de hostingkeuze:
+WordPress draait lokaal op je eigen Mac, zonder dat je PHP of MySQL hoeft te installeren. Alles zit in deze repo:
+
+```bash
+npm install
+npm start
+```
+
+Ga daarna naar **http://127.0.0.1:8881** — je bent dan al ingelogd als beheerder. Wil je handmatig inloggen, bijvoorbeeld na uitloggen:
+
+| | |
+|---|---|
+| Adres | http://127.0.0.1:8881/wp-admin |
+| Gebruikersnaam | `admin` |
+| Wachtwoord | `password` |
+
+Dat is de standaard van WordPress Playground en prima voor een lokale ontwikkelomgeving. Zodra de site op een echte server komt te staan, komt daar een eigen account met een fatsoenlijk wachtwoord — en dat wachtwoord komt níét in deze repo.
+
+### Hoe dit werkt
+
+`wp-playground-cli` draait PHP als WebAssembly met SQLite als database, dus er is geen Docker, geen MAMP en geen serverinstallatie nodig. `wp/blueprint.json` beschrijft de complete site: welk thema actief is, de site-instellingen en alle twaalf pagina's met hun sjablonen.
+
+Dat betekent dat de héle WordPress-installatie reproduceerbaar in GitHub staat. Mary doet `npm install && npm start` en heeft binnen een minuut exact dezelfde site. Gooi je de omgeving weg, dan bouwt hij zichzelf opnieuw op.
+
+Wat je in wp-admin aanpast — losse teksten, instellingen — leeft alleen lokaal. Wat blijvend moet zijn, hoort in het thema of in het blueprint.
+
+---
+
+## Van lokaal naar online
+
+Lokaal draaien is niet hetzelfde als online staan. Voor een site die het publiek kan bereiken:
 
 - **GitHub** bewaart code. Je logt daar in op de repo, niet op een website.
-- **Vercel** serveert kant-en-klare bestanden. Er is een openbare URL om de site te bekijken, maar geen beheeromgeving om teksten in aan te passen.
-- **WordPress** heeft PHP en een database nodig. Dat kan niet op Vercel en niet op GitHub.
+- **Vercel** serveert kant-en-klare bestanden. Openbare URL om de site te bekijken, maar geen beheeromgeving.
+- **WordPress online** heeft PHP en een database nodig. Dat kan niet op Vercel en niet op GitHub.
 
-Wil je kunnen inloggen om content te beheren, dan zijn er twee wegen:
+Twee wegen:
 
 ### A. Statisch op Vercel, met een CMS dat via GitHub inlogt
 
@@ -38,11 +67,11 @@ Voeg een headless CMS toe (Sveltia CMS of Decap CMS). Hoe dat werkt:
 
 Voordelen: geen serveronderhoud, geen updates, geen beveiligingslek, en alles staat versiebeheerd in GitHub. Mary kan hetzelfde doen met haar account. Nadeel: John moet ook een GitHub-account hebben, of we regelen een aparte inlog.
 
-### B. Echte WordPress op PHP-hosting
+### B. WordPress online op PHP-hosting
 
-Dan krijg je het vertrouwde `wp-admin` met e-mail en wachtwoord, en kan John zonder GitHub werken. Maar dan is Vercel niet de hosting — daar is een pakket met PHP en MySQL voor nodig.
+Hetzelfde wat je nu lokaal draait, maar dan op een server met PHP en MySQL. Je krijgt het vertrouwde `wp-admin` met je eigen e-mailadres en wachtwoord, en John hoeft geen GitHub-account te hebben. Het thema uit deze repo gaat er ongewijzigd op; de GitHub Action in `.github/workflows/deploy.yml` staat er al voor klaar en heeft alleen de servergegevens nodig.
 
-**Mijn advies: A.** De site heeft geen webshop, geen inlogomgeving voor gasten en geen dagelijkse blogposts. Wat er beheerd moet worden zijn teksten, foto's en prijzen. Daar is een git-gebaseerd CMS ruim voldoende voor, en het is aanzienlijk goedkoper en veiliger in onderhoud. De boekingen lopen toch al via MyTourist.
+**Mijn advies: A.** De site heeft geen webshop, geen inlogomgeving voor gasten en geen dagelijkse blogposts. Wat er beheerd moet worden zijn teksten, foto's en prijzen. Daar is een git-gebaseerd CMS ruim voldoende voor, en het is goedkoper en veiliger in onderhoud. De boekingen lopen toch al via MyTourist.
 
 Dit is nog niet ingebouwd — zeg het als je richting A wilt, dan zet ik het erin.
 

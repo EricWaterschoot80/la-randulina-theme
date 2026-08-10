@@ -92,13 +92,29 @@ function la_randulina_actief_seizoen(): string {
 /**
  * Zet het seizoen als class op het html-element, zodat de CSS er direct
  * op kan sturen zonder dat de pagina eerst verkeerd in beeld komt.
+ *
+ * language_attributes() geeft een reeks attributen terug, bijvoorbeeld
+ * lang="nl-NL". We voegen daar een volwaardig class-attribuut aan toe — een
+ * los woord erachter plakken levert een leeg attribuut op en geen class.
+ * Staat er al een class in de reeks, dan vullen we die aan.
  */
 function la_randulina_html_class( string $output ): string {
 	if ( is_admin() ) {
 		return $output;
 	}
 
-	return trim( $output . ' seizoen-' . la_randulina_actief_seizoen() );
+	$class = 'seizoen-' . la_randulina_actief_seizoen();
+
+	if ( preg_match( '/class=(["\'])(.*?)\1/', $output ) ) {
+		return preg_replace(
+			'/class=(["\'])(.*?)\1/',
+			'class=$1$2 ' . $class . '$1',
+			$output,
+			1
+		);
+	}
+
+	return trim( $output ) . ' class="' . esc_attr( $class ) . '"';
 }
 add_filter( 'language_attributes', 'la_randulina_html_class' );
 

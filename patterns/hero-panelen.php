@@ -8,8 +8,13 @@
  * @package la-randulina
  */
 
+/**
+ * Enkele quotes binnen de url(), want deze waarde belandt in een
+ * style="..."-attribuut. Met dubbele quotes breekt het attribuut af op het
+ * eerste aanhalingsteken en houdt de browser alleen 'url(' over.
+ */
 $lr_beeld = static function ( string $bestand ): string {
-	return 'url("' . esc_url( get_theme_file_uri( 'assets/img/' . $bestand ) ) . '")';
+	return "url('" . esc_url( get_theme_file_uri( 'assets/img/' . $bestand ) ) . "')";
 };
 
 $lr_panelen = array(

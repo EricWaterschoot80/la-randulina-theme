@@ -8,7 +8,16 @@
 		<div class="wp-block-group">
 			<!-- wp:pattern {"slug":"la-randulina/seizoenswissel"} /-->
 
-			<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"left"}} /-->
+			<!-- Menu-items staan hier vast in plaats van in de database. Zo staat de
+			     navigatie in versiebeheer, en loopt hij niet mis bij het omzetten
+			     van een klassiek menu naar het navigatieblok. -->
+			<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"left"}} -->
+				<!-- wp:navigation-link {"label":"Over ons","url":"/over-ons/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Onze kamers","url":"/onzekamers/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Eten &amp; drinken","url":"/eten-en-drinken/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Praktisch &amp; FAQ","url":"/praktische-info-faq/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Contact","url":"/contact-route/","kind":"custom","isTopLevelLink":true} /-->
+			<!-- /wp:navigation -->
 		</div>
 		<!-- /wp:group -->
 
