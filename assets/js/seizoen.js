@@ -63,7 +63,16 @@
 		toepassen( knop.dataset.lrSeizoen );
 	} );
 
-	// De cookie is bij het eerste bezoek nog niet gezet, terwijl PHP wel al
+	// Een gedeelde link als /?seizoen=winter moet het juiste seizoen tonen.
+	// In WordPress leest PHP die parameter al en staat de class meteen goed;
+	// op de statische site is er geen server die dat kan, dus doen we het hier.
+	var uitUrl = new URLSearchParams( location.search ).get( 'seizoen' );
+
+	if ( SEIZOENEN.indexOf( uitUrl ) !== -1 ) {
+		toepassen( uitUrl );
+	}
+
+	// De cookie is bij het eerste bezoek nog niet gezet, terwijl de server al
 	// een seizoen op basis van de kalender heeft gekozen. Die keuze leggen we
 	// hier vast, zodat server en browser het daarna eens zijn.
 	if ( document.cookie.indexOf( COOKIE + '=' ) === -1 ) {

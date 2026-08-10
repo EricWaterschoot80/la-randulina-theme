@@ -100,15 +100,17 @@ a:hover { color: ${link[':hover'].color.text}; }
 	display: inline-block;
 	background-color: ${knop.color.background};
 	color: ${knop.color.text};
-	border: 0;
+	border: ${knop.border.width ?? '0'} ${knop.border.style ?? 'solid'} ${knop.border.color ?? 'transparent'};
 	border-radius: ${knop.border.radius};
 	padding: ${knop.spacing.padding.top} ${knop.spacing.padding.right};
 	font-family: ${knop.typography.fontFamily};
 	font-size: ${knop.typography.fontSize};
 	font-weight: ${knop.typography.fontWeight};
 	letter-spacing: ${knop.typography.letterSpacing};
+	text-transform: ${knop.typography.textTransform ?? 'none'};
 	text-decoration: none;
 	cursor: pointer;
+	transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease;
 }
 
 .wp-element-button:hover {

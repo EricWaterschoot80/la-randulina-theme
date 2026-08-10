@@ -36,7 +36,7 @@ $lr_vragen = array(
 );
 ?>
 <!-- wp:html -->
-<div class="lr-faq">
+<div class="lr-faq" data-onthul>
 	<?php foreach ( $lr_vragen as $lr_vraag ) : ?>
 		<details class="lr-faq__item">
 			<summary class="lr-faq__vraag"><?php echo esc_html( $lr_vraag['vraag'] ); ?></summary>

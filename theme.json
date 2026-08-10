@@ -16,7 +16,7 @@
 			"palette": [
 				{
 					"slug": "base",
-					"color": "#FBF8F3",
+					"color": "#FCFAF7",
 					"name": "Berglicht (achtergrond)"
 				},
 				{
@@ -36,7 +36,7 @@
 				},
 				{
 					"slug": "tertiary",
-					"color": "#E9E1D4",
+					"color": "#EDE7DC",
 					"name": "Steenbeige"
 				},
 				{
@@ -123,13 +123,39 @@
 		},
 		"spacing": {
 			"defaultSpacingSizes": false,
-			"units": ["rem", "px", "%", "vh", "vw"],
+			"units": [
+				"rem",
+				"px",
+				"%",
+				"vh",
+				"vw"
+			],
 			"spacingSizes": [
-				{ "slug": "20", "name": "Krap", "size": "clamp(0.75rem, 1vw, 1rem)" },
-				{ "slug": "30", "name": "Klein", "size": "clamp(1.25rem, 2vw, 1.75rem)" },
-				{ "slug": "40", "name": "Normaal", "size": "clamp(2rem, 3.5vw, 3rem)" },
-				{ "slug": "50", "name": "Ruim", "size": "clamp(3rem, 6vw, 5rem)" },
-				{ "slug": "60", "name": "Sectie", "size": "clamp(4.5rem, 9vw, 8rem)" }
+				{
+					"slug": "20",
+					"name": "Krap",
+					"size": "clamp(0.75rem, 1vw, 1rem)"
+				},
+				{
+					"slug": "30",
+					"name": "Klein",
+					"size": "clamp(1.25rem, 2vw, 1.75rem)"
+				},
+				{
+					"slug": "40",
+					"name": "Normaal",
+					"size": "clamp(2rem, 3.5vw, 3rem)"
+				},
+				{
+					"slug": "50",
+					"name": "Ruim",
+					"size": "clamp(3.5rem, 7vw, 6rem)"
+				},
+				{
+					"slug": "60",
+					"name": "Sectie",
+					"size": "clamp(5.5rem, 11vw, 10rem)"
+				}
 			]
 		},
 		"border": {
@@ -167,9 +193,9 @@
 			"heading": {
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--kop)",
-					"fontWeight": "600",
-					"lineHeight": "1.15",
-					"letterSpacing": "-0.015em"
+					"fontWeight": "300",
+					"lineHeight": "1.18",
+					"letterSpacing": "-0.005em"
 				}
 			},
 			"h1": {
@@ -207,26 +233,30 @@
 			},
 			"button": {
 				"color": {
-					"background": "var(--wp--preset--color--primary)",
-					"text": "var(--wp--preset--color--base)"
+					"background": "transparent",
+					"text": "var(--wp--preset--color--contrast)"
 				},
 				"border": {
-					"radius": "4px"
+					"radius": "0",
+					"width": "1px",
+					"style": "solid",
+					"color": "var(--wp--preset--color--contrast)"
 				},
 				"spacing": {
 					"padding": {
-						"top": "0.85em",
-						"bottom": "0.85em",
-						"left": "1.75em",
-						"right": "1.75em"
+						"top": "1.05em",
+						"bottom": "1.05em",
+						"left": "2.2em",
+						"right": "2.2em"
 					}
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--tekst)",
-					"fontSize": "var(--wp--preset--font-size--medium)",
-					"fontWeight": "600",
+					"fontSize": "var(--wp--preset--font-size--small)",
+					"fontWeight": "500",
 					"textDecoration": "none",
-					"letterSpacing": "0.01em"
+					"letterSpacing": "0.12em",
+					"textTransform": "uppercase"
 				},
 				":hover": {
 					"color": {
@@ -301,12 +331,16 @@
 		{
 			"name": "page-doelgroep",
 			"title": "Doelgroeppagina",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		},
 		{
 			"name": "page-breed",
 			"title": "Pagina zonder zijmarges",
-			"postTypes": ["page"]
+			"postTypes": [
+				"page"
+			]
 		}
 	]
 }

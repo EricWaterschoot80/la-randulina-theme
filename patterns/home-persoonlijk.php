@@ -30,7 +30,7 @@ $lr_familie = array(
 <!-- wp:html -->
 <section class="lr-binnen lr-persoonlijk">
 
-	<div class="lr-persoonlijk__beeld">
+	<div class="lr-persoonlijk__beeld" data-onthul="beeld">
 		<figure>
 			<img
 				src="<?php echo esc_url( get_theme_file_uri( 'assets/img/lodge.jpg' ) ); ?>"
@@ -45,7 +45,7 @@ $lr_familie = array(
 		</figure>
 	</div>
 
-	<div class="lr-persoonlijk__tekst">
+	<div class="lr-persoonlijk__tekst" data-onthul="1">
 		<h2><?php esc_html_e( 'Wij zijn John, Ilona en Luna', 'la-randulina' ); ?></h2>
 
 		<p><?php esc_html_e( 'Onze reis in de gastvrijheid begon in Italië, waar we jarenlang met veel plezier onze eigen B&B runden. Daar werd onze liefde voor ongedwongen gastvrijheid en de authentieke keuken definitief verzegeld. De bergen trokken ons uiteindelijk naar het Zwitserse Ramosch, maar die Italiaanse passie voor het goede leven namen we mee. Dat proef je terug op onze kaart.', 'la-randulina' ); ?></p>

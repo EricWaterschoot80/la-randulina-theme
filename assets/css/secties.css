@@ -6,28 +6,56 @@
 /* --- Introductie onder de panelen --- */
 
 .lr-intro {
-	max-inline-size: 44rem;
+	max-inline-size: 42rem;
 	margin-inline: auto;
 	text-align: center;
 }
 
+/*
+ * Het bovenschriftje. Klein, wijd gespatieerd en in een gedempte kleur —
+ * het benoemt de plek zonder de kop te beconcurreren. Fel oranje trok hier
+ * te veel aandacht weg van de foto's.
+ */
 .lr-intro__subkop {
 	display: block;
-	margin-block-end: 0.6em;
+	margin-block-end: 1.4em;
 	font-family: var(--wp--preset--font-family--tekst);
-	font-size: var(--wp--preset--font-size--small);
-	font-weight: 600;
-	letter-spacing: 0.14em;
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: 0.24em;
 	text-transform: uppercase;
-	color: var(--wp--preset--color--secondary);
+	color: color-mix(in srgb, var(--wp--preset--color--contrast) 55%, transparent);
 }
 
 .lr-intro h1 {
-	margin-block: 0 0.5em;
+	margin-block: 0 0.65em;
+	max-inline-size: 18ch;
+	margin-inline: auto;
+}
+
+/* De ondertitel mag groter dan de lopende tekst: hij hoort nog bij de kop. */
+.lr-intro__lead {
+	margin-block: 0 2em;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 300;
+	line-height: 1.5;
+	color: color-mix(in srgb, var(--wp--preset--color--contrast) 78%, transparent);
 }
 
 .lr-intro p + p {
-	margin-block-start: 1.2em;
+	margin-block-start: 1.4em;
+}
+
+/*
+ * Lopende tekst iets rustiger dan zwart, zoals op de referentiesite, en
+ * smaller dan het blok zelf. Gecentreerde tekst over de volle 42rem geeft
+ * regels van zo'n negentig tekens; dat leest slecht omdat het oog bij elke
+ * nieuwe regel opnieuw het begin moet zoeken.
+ */
+.lr-intro p:not(.lr-intro__lead) {
+	max-inline-size: 60ch;
+	margin-inline: auto;
+	color: color-mix(in srgb, var(--wp--preset--color--contrast) 86%, transparent);
 }
 
 /* --- Persoonlijk blok: de familie achter de lodge --- */
@@ -103,7 +131,7 @@
 .lr-familie strong {
 	font-family: var(--wp--preset--font-family--kop);
 	font-size: var(--wp--preset--font-size--large);
-	font-weight: 500;
+	font-weight: 400;
 	display: block;
 	margin-block-end: 0.15em;
 }
@@ -131,7 +159,7 @@
 .lr-duo {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-	gap: clamp(1.5rem, 4vw, 3.5rem);
+	gap: clamp(2rem, 5vw, 5rem);
 	align-items: center;
 }
 
@@ -161,7 +189,7 @@
 .lr-sectiekop {
 	max-inline-size: 40rem;
 	margin-inline: auto;
-	margin-block-end: var(--wp--preset--spacing--40);
+	margin-block-end: var(--wp--preset--spacing--50);
 	text-align: center;
 }
 
@@ -181,7 +209,7 @@
 	background-color: var(--wp--preset--color--tertiary);
 }
 
-/* Op de beige band vallen beige kaartjes weg; die worden hier licht. */
+/* Op de band houden de kaartjes hun eigen lichte vlak. */
 .lr-band .lr-kenmerken li {
 	background-color: var(--wp--preset--color--base);
 }
@@ -195,24 +223,54 @@
 	color: color-mix(in srgb, var(--wp--preset--color--base) 82%, transparent);
 }
 
+/*
+ * Knoppen zijn nu omlijnd in plaats van gevuld. Op de donkere band moeten
+ * lijn en tekst dus meekleuren, anders staat er donker op donker.
+ */
+.lr-band--donker .wp-element-button {
+	border-color: color-mix(in srgb, var(--wp--preset--color--base) 55%, transparent);
+	color: var(--wp--preset--color--base);
+}
+
+.lr-band--donker .wp-element-button:hover {
+	background-color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+
 /* --- Knoppenrij --- */
 
 .lr-knoppen {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.75rem;
+	gap: 0.85rem;
 	justify-content: center;
-	margin-block-start: var(--wp--preset--spacing--30);
+	margin-block-start: var(--wp--preset--spacing--40);
 }
 
-.lr-knop--omlijnd {
+/*
+ * De boekknop is de enige plek waar de lariks-kleur nog gevuld wordt
+ * gebruikt. Eén accent op de pagina, precies waar de bezoeker heen moet.
+ */
+.lr-boekknop {
+	background-color: var(--wp--preset--color--secondary);
+	border-color: var(--wp--preset--color--secondary);
+	color: var(--wp--preset--color--base);
+}
+
+.lr-boekknop:hover {
 	background-color: transparent;
-	box-shadow: inset 0 0 0 1px currentColor;
-	color: inherit;
+	border-color: currentColor;
 }
 
-.lr-knop--omlijnd:hover {
+.lr-band--donker .lr-boekknop {
+	color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--secondary);
+}
+
+.lr-band--donker .lr-boekknop:hover {
 	background-color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--base);
 	color: var(--wp--preset--color--contrast);
 }
 

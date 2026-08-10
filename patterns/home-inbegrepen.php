@@ -39,12 +39,12 @@ $lr_inbegrepen = array(
 <section class="lr-band">
 	<div class="lr-binnen">
 
-		<div class="lr-sectiekop">
+		<div class="lr-sectiekop" data-onthul>
 			<h2><?php esc_html_e( 'Altijd inbegrepen bij je verblijf', 'la-randulina' ); ?></h2>
 			<p><?php esc_html_e( 'Geen verrassingen achteraf. Dit hoort er standaard bij, in elke kamer en elk seizoen.', 'la-randulina' ); ?></p>
 		</div>
 
-		<ul class="lr-kenmerken">
+		<ul class="lr-kenmerken" data-onthul="1">
 			<?php foreach ( $lr_inbegrepen as $lr_item ) : ?>
 				<li>
 					<strong><?php echo esc_html( $lr_item['titel'] ); ?></strong>

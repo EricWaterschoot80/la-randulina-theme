@@ -10,7 +10,7 @@
 
 ?>
 <!-- wp:html -->
-<section class="lr-binnen lr-intro">
+<section class="lr-binnen lr-intro" data-onthul>
 
 	<span class="lr-intro__subkop"><?php esc_html_e( 'Ramosch · Unterengadin · Zwitserland', 'la-randulina' ); ?></span>
 

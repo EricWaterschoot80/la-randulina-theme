@@ -31,14 +31,14 @@ $lr_seizoenen = array(
 <?php foreach ( $lr_seizoenen as $lr_sleutel => $lr_seizoen ) : ?>
 	<section class="lr-binnen lr-duo<?php echo 'winter' === $lr_sleutel ? ' lr-duo--omgekeerd' : ''; ?>" data-seizoen="<?php echo esc_attr( $lr_sleutel ); ?>">
 
-		<div class="lr-duo__beeld">
+		<div class="lr-duo__beeld" data-onthul="beeld">
 			<img
 				src="<?php echo esc_url( get_theme_file_uri( 'assets/img/' . $lr_seizoen['beeld'] ) ); ?>"
 				alt="<?php echo esc_attr( $lr_seizoen['alt'] ); ?>"
 				width="1000" height="667" loading="lazy" decoding="async">
 		</div>
 
-		<div class="lr-duo__tekst">
+		<div class="lr-duo__tekst" data-onthul="1">
 			<h2><?php echo esc_html( $lr_seizoen['kop'] ); ?></h2>
 			<p><?php echo esc_html( $lr_seizoen['tekst'] ); ?></p>
 			<p>

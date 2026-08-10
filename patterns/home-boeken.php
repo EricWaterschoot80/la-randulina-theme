@@ -12,7 +12,7 @@ $lr_links = function_exists( 'la_randulina_links' ) ? la_randulina_links() : arr
 ?>
 <!-- wp:html -->
 <section class="lr-band lr-band--donker">
-	<div class="lr-binnen lr-sectiekop">
+	<div class="lr-binnen lr-sectiekop" data-onthul>
 
 		<h2><?php esc_html_e( 'Kom je ook?', 'la-randulina' ); ?></h2>
 		<p><?php esc_html_e( 'Twaalf kamers, een speelkamer, een fietshub en een dorp waar je de stilte nog echt hoort. Bekijk wanneer er plek is.', 'la-randulina' ); ?></p>

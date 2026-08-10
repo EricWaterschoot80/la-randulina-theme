@@ -22,6 +22,7 @@ function la_randulina_assets(): void {
 		'la-randulina-secties'  => 'assets/css/secties.css',
 		'la-randulina-panelen'  => 'assets/css/panelen.css',
 		'la-randulina-seizoen'  => 'assets/css/seizoen.css',
+		'la-randulina-onthul'   => 'assets/css/onthullen.css',
 	);
 
 	foreach ( $bestanden as $handle => $pad ) {
@@ -56,6 +57,28 @@ function la_randulina_seizoen_script(): void {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'la_randulina_seizoen_script' );
+
+/**
+ * Het onthulscript. Alleen op de site: in de editor moet een redacteur alles
+ * meteen zien staan, niet wachten tot iets in beeld scrolt.
+ */
+function la_randulina_onthul_script(): void {
+	$pad      = '/assets/js/onthullen.js';
+	$absoluut = get_template_directory() . $pad;
+
+	if ( ! file_exists( $absoluut ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'la-randulina-onthullen',
+		get_template_directory_uri() . $pad,
+		array(),
+		(string) filemtime( $absoluut ),
+		array( 'strategy' => 'defer' )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'la_randulina_onthul_script' );
 
 /**
  * Bepaal het actieve seizoen voor deze paginaweergave.

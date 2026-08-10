@@ -114,8 +114,8 @@ img {
 .lr-kop__naam strong {
 	font-family: var(--wp--preset--font-family--kop);
 	font-size: 1.5rem;
-	font-weight: 500;
-	letter-spacing: -0.01em;
+	font-weight: 300;
+	letter-spacing: 0;
 	text-transform: none;
 }
 

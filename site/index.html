@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="assets/css/secties.css">
 <link rel="stylesheet" href="assets/css/panelen.css">
 <link rel="stylesheet" href="assets/css/seizoen.css">
+<link rel="stylesheet" href="assets/css/onthullen.css">
 <link rel="stylesheet" href="assets/css/statisch.css">
 </head>
 <body>
@@ -95,7 +96,7 @@
 <main id="inhoud">
 
 	<!-- ============ Welkom ============ -->
-	<section class="lr-binnen lr-intro lr-sectie">
+	<section class="lr-binnen lr-intro lr-sectie" data-onthul>
 		<span class="lr-intro__subkop">Ramosch · Unterengadin · Zwitserland</span>
 		<h1>Jouw actieve thuisbasis in de Zwitserse Alpen</h1>
 		<p class="lr-intro__lead">De ongedwongen sfeer van een berghut, het comfort van een hotel.</p>
@@ -108,7 +109,7 @@
 	<!-- ============ Persoonlijk blok ============ -->
 	<section class="lr-binnen lr-persoonlijk lr-sectie" id="persoonlijk">
 
-		<div class="lr-persoonlijk__beeld">
+		<div class="lr-persoonlijk__beeld" data-onthul="beeld">
 			<figure>
 				<img src="assets/img/lodge.jpg" width="1400" height="933" loading="lazy" decoding="async"
 					alt="Familielodge La Randulina, een voormalige boerderij en bakkerij aan de dorpsstraat van Ramosch">
@@ -119,7 +120,7 @@
 			</figure>
 		</div>
 
-		<div class="lr-persoonlijk__tekst">
+		<div class="lr-persoonlijk__tekst" data-onthul="1">
 			<h2>Wij zijn John, Ilona en Luna</h2>
 
 			<p>Onze reis in de gastvrijheid begon in Italië, waar we jarenlang met veel plezier onze eigen B&amp;B runden. Daar werd onze liefde voor ongedwongen gastvrijheid en de authentieke keuken definitief verzegeld. De bergen trokken ons uiteindelijk naar het Zwitserse Ramosch, maar die Italiaanse passie voor het goede leven namen we mee. Dat proef je terug op onze kaart.</p>
@@ -150,11 +151,11 @@
 
 	<!-- ============ Zomer / winter ============ -->
 	<section class="lr-binnen lr-duo lr-sectie" data-seizoen="zomer" id="actief">
-		<div class="lr-duo__beeld">
+		<div class="lr-duo__beeld" data-onthul="beeld">
 			<img src="assets/img/paneel-actief-zomer.jpg" width="1000" height="533" loading="lazy" decoding="async"
 				alt="Mountainbiker op een bergpad in het Unterengadin">
 		</div>
-		<div class="lr-duo__tekst">
+		<div class="lr-duo__tekst" data-onthul="1">
 			<h2>Zomer in het Unterengadin</h2>
 			<p>Eindeloze singletracks, uitdagende bergpassen en ongerepte wandelpaden door het Zwitsers Nationaal Park. Dankzij ons microklimaat valt hier de minste neerslag van heel Zwitserland, dus je zit zelden binnen. Terug bij de lodge staat je fiets veilig in de bike-garage en schuif je om vijf uur aan tafel.</p>
 			<p><a class="wp-element-button" href="#">Bekijk de zomeractiviteiten</a></p>
@@ -162,11 +163,11 @@
 	</section>
 
 	<section class="lr-binnen lr-duo lr-duo--omgekeerd lr-sectie" data-seizoen="winter">
-		<div class="lr-duo__beeld">
+		<div class="lr-duo__beeld" data-onthul="beeld">
 			<img src="assets/img/paneel-actief-winter.jpg" width="1000" height="667" loading="lazy" decoding="async"
 				alt="Bergbaan boven het besneeuwde skigebied Scuol Motta Naluns">
 		</div>
-		<div class="lr-duo__tekst">
+		<div class="lr-duo__tekst" data-onthul="1">
 			<h2>Winter in het Unterengadin</h2>
 			<p>Het sneeuwzekere skigebied Scuol/Samnaun ligt vlakbij. Daarnaast kun je winterwandelen, rodelen of over de Eisweg Engadin schaatsen door besneeuwde bossen. Na een koude dag warm je op bij de knisperende openhaard in de stube, met de kinderen in de speelkamer ernaast.</p>
 			<p><a class="wp-element-button" href="#">Bekijk de winteractiviteiten</a></p>
@@ -175,11 +176,11 @@
 
 	<!-- ============ Gezinnen ============ -->
 	<section class="lr-binnen lr-duo lr-sectie" id="gezinnen">
-		<div class="lr-duo__beeld">
+		<div class="lr-duo__beeld" data-onthul="beeld">
 			<img src="assets/img/speelkamer.jpg" width="1000" height="1500" loading="lazy" decoding="async"
 				alt="De speelkamer van de lodge met een witte tipi en speelgoed">
 		</div>
-		<div class="lr-duo__tekst">
+		<div class="lr-duo__tekst" data-onthul="1">
 			<h2>Voor gezinnen</h2>
 			<p>Onze familiekamers zijn één ruime eenheid: geen gedoe met losse kamers of tussendeuren. Het grote pluspunt voor de kids is de aparte speelkamer, waar ze veilig kunnen spelen, knutselen en nieuwe vriendjes maken. Ondertussen ontspannen de ouders in de gezamenlijke huiskamer of aan de bar.</p>
 			<p><a class="wp-element-button" href="#">Meer voor gezinnen</a></p>
@@ -188,11 +189,11 @@
 
 	<!-- ============ Eten en drinken ============ -->
 	<section class="lr-binnen lr-duo lr-duo--omgekeerd lr-sectie" id="eten">
-		<div class="lr-duo__beeld">
+		<div class="lr-duo__beeld" data-onthul="beeld">
 			<img src="assets/img/ontbijt.jpg" width="1000" height="1500" loading="lazy" decoding="async"
 				alt="Het ontbijtbuffet met kaas, vleeswaren en vers brood">
 		</div>
-		<div class="lr-duo__tekst">
+		<div class="lr-duo__tekst" data-onthul="1">
 			<h2>Smakelijk, ongedwongen en snel aan tafel</h2>
 			<p>Geen stijve, urenlange diners, maar een compacte kaart met voedzame gerechten die snel op tafel staan. Onze keuken is open van 17:00 tot 18:30 uur — ideaal voor hongerige sporters en gezinnen met kinderen die op tijd willen eten.</p>
 			<p>Wil je later of uitgebreider tafelen? Om stipt 18:30 uur rijdt onze shuttle naar een sfeervolle Italiaanse trattoria in de buurt, voor 5 CHF per persoon. Wij regelen de rit.</p>
@@ -203,12 +204,12 @@
 	<!-- ============ Altijd inbegrepen ============ -->
 	<section class="lr-band" id="stellen">
 		<div class="lr-binnen">
-			<div class="lr-sectiekop">
+			<div class="lr-sectiekop" data-onthul>
 				<h2>Altijd inbegrepen bij je verblijf</h2>
 				<p>Geen verrassingen achteraf. Dit hoort er standaard bij, in elke kamer en elk seizoen.</p>
 			</div>
 
-			<ul class="lr-kenmerken">
+			<ul class="lr-kenmerken" data-onthul="1">
 				<li><strong>Stevig lodge-ontbijt</strong>Elke ochtend staat er een uitgebreid ontbijt klaar om vol energie op pad te gaan.</li>
 				<li><strong>De complete fietshub</strong>Afgesloten bike-garage, ruim voldoende e-bike laadpunten, een professionele bikewash en een reparatiestandaard.</li>
 				<li><strong>Regionale gastenkaart</strong>Gratis of met veel korting reizen met bus en trein, en gebruikmaken van de bergliften in de regio.</li>
@@ -221,11 +222,11 @@
 
 	<!-- ============ Groepen ============ -->
 	<section class="lr-binnen lr-duo lr-sectie" id="groepen">
-		<div class="lr-duo__beeld">
+		<div class="lr-duo__beeld" data-onthul="beeld">
 			<img src="assets/img/huiskamer.jpg" width="1000" height="1500" loading="lazy" decoding="async"
 				alt="De gezamenlijke huiskamer met boekenkast en zithoek">
 		</div>
-		<div class="lr-duo__tekst">
+		<div class="lr-duo__tekst" data-onthul="1">
 			<h2>De hele lodge voor jullie alleen</h2>
 			<p>Voor een familieweekend, een trainingsweek met de fietsclub of een wintersportvakantie met vrienden huur je La Randulina in zijn geheel af. Twaalf kamers, een centrale huiskamer, de speelkamer voor de kids en topfaciliteiten voor sporters. Geen andere gasten in het pand.</p>
 			<p><a class="wp-element-button" href="#contact">Vraag een groepsofferte aan</a></p>
@@ -234,11 +235,11 @@
 
 	<!-- ============ FAQ ============ -->
 	<section class="lr-binnen lr-sectie lr-smal" id="faq">
-		<div class="lr-sectiekop">
+		<div class="lr-sectiekop" data-onthul>
 			<h2>Veelgestelde vragen</h2>
 		</div>
 
-		<div class="lr-faq">
+		<div class="lr-faq" data-onthul>
 			<details class="lr-faq__item">
 				<summary class="lr-faq__vraag">Hoe laat kunnen we inchecken?</summary>
 				<div class="lr-faq__antwoord"><p>Inchecken kan vanaf 15:00 uur. Kom je later aan? Laat het ons even weten, dan zorgen we dat er iemand voor je klaarstaat.</p></div>
@@ -305,5 +306,6 @@
 </footer>
 
 <script src="assets/js/seizoen.js"></script>
+<script src="assets/js/onthullen.js"></script>
 </body>
 </html>
