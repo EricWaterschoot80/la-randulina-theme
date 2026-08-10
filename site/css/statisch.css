@@ -18,11 +18,32 @@
 	color: var(--wp--preset--color--sneeuw);
 }
 
+/*
+ * Volgorde: logo links, dan het menu, en rechts de seizoenswissel met de
+ * boekknop. Het logo stond eerst in het midden, maar dan is het eerste wat
+ * je leest een menu-item in plaats van van wie de site is.
+ */
+.lr-kop__titel {
+	order: 1;
+	flex: none;
+}
+
+/* Ruime afstand tot het logo: die twee horen niet aan elkaar te plakken. */
 .lr-kop__links {
+	order: 2;
 	display: flex;
 	align-items: center;
 	gap: var(--wp--preset--spacing--30);
 	flex: 1;
+	margin-inline-start: clamp(2rem, 5vw, 5rem);
+}
+
+.lr-kop__rechts {
+	order: 3;
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--20);
+	flex: none;
 }
 
 .lr-nav {
@@ -65,16 +86,20 @@
 		color: var(--wp--preset--color--sneeuw);
 	}
 
+	/* Logo en boekknop naast elkaar, het menu op een eigen regel eronder. */
 	.lr-kop__links {
-		order: 2;
 		flex-basis: 100%;
 		flex-direction: column;
 		align-items: center;
 		gap: 0.85rem;
 	}
 
-	.lr-kop__titel {
-		order: 1;
+	.lr-kop__rechts {
+		order: 2;
+	}
+
+	.lr-kop__links {
+		order: 3;
 	}
 
 	.lr-nav {
@@ -90,19 +115,18 @@
  * Dit bestand staat in assets/css/, dus ../img/ klopt.
  */
 
-.seizoen-zomer  .lr-panelen { background-image: url(../img/hero-zomer.jpg); }
-.seizoen-winter .lr-panelen { background-image: url(../img/hero-winter.jpg); }
+.seizoen-zomer  .lr-opening { background-image: url(../img/opening-zomer.jpg); }
+.seizoen-winter .lr-opening { background-image: url(../img/opening-winter.jpg); }
 
-@media (width < 60rem) {
-	.seizoen-zomer  .lr-paneel--gezinnen { background-image: url(../img/paneel-gezinnen-zomer.jpg); }
-	.seizoen-winter .lr-paneel--gezinnen { background-image: url(../img/paneel-gezinnen-winter.jpg); }
-	.seizoen-zomer  .lr-paneel--actief   { background-image: url(../img/paneel-actief-zomer.jpg); }
-	.seizoen-winter .lr-paneel--actief   { background-image: url(../img/paneel-actief-winter.jpg); }
-	.seizoen-zomer  .lr-paneel--stellen  { background-image: url(../img/paneel-stellen-zomer.jpg); }
-	.seizoen-winter .lr-paneel--stellen  { background-image: url(../img/paneel-stellen-winter.jpg); }
-	.seizoen-zomer  .lr-paneel--groepen  { background-image: url(../img/paneel-groepen-zomer.jpg); }
-	.seizoen-winter .lr-paneel--groepen  { background-image: url(../img/paneel-groepen-winter.jpg); }
-}
+/* Op elke schermbreedte, want elk paneel toont nu zijn eigen doelgroep. */
+.seizoen-zomer  .lr-paneel--gezinnen { background-image: url(../img/paneel-gezinnen-zomer.jpg); }
+.seizoen-winter .lr-paneel--gezinnen { background-image: url(../img/paneel-gezinnen-winter.jpg); }
+.seizoen-zomer  .lr-paneel--actief   { background-image: url(../img/paneel-actief-zomer.jpg); }
+.seizoen-winter .lr-paneel--actief   { background-image: url(../img/paneel-actief-winter.jpg); }
+.seizoen-zomer  .lr-paneel--stellen  { background-image: url(../img/paneel-stellen-zomer.jpg); }
+.seizoen-winter .lr-paneel--stellen  { background-image: url(../img/paneel-stellen-winter.jpg); }
+.seizoen-zomer  .lr-paneel--groepen  { background-image: url(../img/paneel-groepen-zomer.jpg); }
+.seizoen-winter .lr-paneel--groepen  { background-image: url(../img/paneel-groepen-winter.jpg); }
 
 /* --- Secties --- */
 

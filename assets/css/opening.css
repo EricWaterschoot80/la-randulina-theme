@@ -1,0 +1,129 @@
+/*
+ * De opening van de homepagina.
+ *
+ * Eén schermvullend beeld met de belofte erop, en verder niets. Pas als je
+ * scrolt volgen de vier doelgroeppanelen. Dat is ook de volgorde op
+ * gradonna.at: eerst sfeer, dan pas de keuze. Meteen met vier panelen
+ * beginnen dwingt de bezoeker te kiezen voordat hij weet waaruit.
+ */
+
+.lr-opening {
+	position: relative;
+	display: grid;
+	align-content: end;
+	/*
+	 * Expliciet, want WordPress zet box-sizing niet globaal op border-box.
+	 * Zonder dit telt de binnenmarge bij de 100svh op en wordt de opening
+	 * hoger dan het scherm — in de statische bouw viel dat niet op, omdat
+	 * de gegenereerde basis.css die reset wél meebrengt.
+	 */
+	box-sizing: border-box;
+	min-block-size: 100svh;
+	padding: var(--wp--preset--spacing--60) var(--wp--preset--spacing--30) var(--wp--preset--spacing--50);
+	background-color: var(--wp--preset--color--contrast);
+	background-size: cover;
+	background-position: center;
+	color: var(--wp--preset--color--sneeuw);
+	overflow: clip;
+	isolation: isolate;
+}
+
+/*
+ * Een verloop van onderaf in plaats van een egale sluier over het hele beeld.
+ * De tekst staat onderin, dus daar is verdonkering nodig; bovenin zou die de
+ * lucht alleen maar vuil maken.
+ */
+.lr-opening::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(
+		to top,
+		rgb(15 22 18 / 0.72) 0%,
+		rgb(15 22 18 / 0.45) 28%,
+		rgb(15 22 18 / 0.12) 58%,
+		rgb(15 22 18 / 0.05) 100%
+	);
+}
+
+.lr-opening__binnen {
+	max-inline-size: 78rem;
+	margin-inline: auto;
+	inline-size: 100%;
+}
+
+.lr-opening__plaats {
+	display: block;
+	margin-block-end: 1.6em;
+	font-family: var(--wp--preset--font-family--tekst);
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+	opacity: 0.85;
+}
+
+.lr-opening h1 {
+	max-inline-size: 16ch;
+	margin: 0;
+	font-size: var(--wp--preset--font-size--hero);
+	font-weight: 300;
+	line-height: 1.05;
+	text-shadow: 0 2px 40px rgb(15 22 18 / 0.4);
+}
+
+.lr-opening__belofte {
+	max-inline-size: 34ch;
+	margin-block: 1.1em 0;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 300;
+	line-height: 1.45;
+	opacity: 0.92;
+	text-shadow: 0 1px 24px rgb(15 22 18 / 0.5);
+}
+
+/* --- De uitnodiging om te scrollen --- */
+
+.lr-opening__verder {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.8rem;
+	margin-block-start: var(--wp--preset--spacing--40);
+	color: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.lr-opening__verder::after {
+	content: "";
+	inline-size: 2.5rem;
+	block-size: 1px;
+	background-color: currentColor;
+	transition: inline-size 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.lr-opening__verder:hover::after,
+.lr-opening__verder:focus-visible::after {
+	inline-size: 4rem;
+}
+
+/*
+ * De opening staat onder de koptekst, die over het beeld heen ligt. Op smalle
+ * schermen staat de koptekst juist als een gewone balk bovenaan; dan mag de
+ * opening iets lager zijn, anders scrolt de bezoeker door twee schermen leegte.
+ */
+@media (width < 60rem) {
+	.lr-opening {
+		min-block-size: min(86svh, 44rem);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lr-opening__verder::after {
+		transition: none;
+	}
+}

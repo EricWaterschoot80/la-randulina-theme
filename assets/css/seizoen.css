@@ -16,6 +16,24 @@
 	display: none;
 }
 
+/* --- Beeldwissel van de opening ---
+ *
+ * LET OP: de url() in deze variabelen moet absoluut zijn. Een relatief pad
+ * wordt opgelost ten opzichte van dít stylesheet, niet ten opzichte van de
+ * pagina — dan zoekt de browser het beeld in assets/css/assets/img/ en krijg
+ * je een 404 zonder foutmelding, alleen een leeg vlak. De WordPress-patronen
+ * gebruiken daarom get_theme_file_uri(); de statische bouw zet de beelden
+ * rechtstreeks in statisch.css.
+ */
+
+.seizoen-zomer .lr-opening {
+	background-image: var(--lr-opening-zomer);
+}
+
+.seizoen-winter .lr-opening {
+	background-image: var(--lr-opening-winter);
+}
+
 /* --- Beeldwissel van de vier panelen --- */
 
 .seizoen-zomer .lr-panelen {

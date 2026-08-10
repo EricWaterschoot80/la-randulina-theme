@@ -19,6 +19,7 @@ $lr_beeld = static function ( string $bestand ): string {
 
 $lr_panelen = array(
 	array(
+		'sleutel' => 'gezinnen',
 		'label' => __( 'Gezinnen', 'la-randulina' ),
 		'intro' => __( 'Ruimte om te spelen, een eigen speelkamer en familiekamers zonder gedoe.', 'la-randulina' ),
 		'url'   => '/nl/gezinnen/',
@@ -26,6 +27,7 @@ $lr_panelen = array(
 		'winter' => 'paneel-gezinnen-winter.jpg',
 	),
 	array(
+		'sleutel' => 'actief',
 		'label' => __( 'Wandelaars & fietsers', 'la-randulina' ),
 		'intro' => __( 'Een volwaardige fietshub, en de minste neerslag van heel Zwitserland.', 'la-randulina' ),
 		'url'   => '/nl/wandelaars-fietsers/',
@@ -33,6 +35,7 @@ $lr_panelen = array(
 		'winter' => 'paneel-actief-winter.jpg',
 	),
 	array(
+		'sleutel' => 'stellen',
 		'label' => __( 'Stellen', 'la-randulina' ),
 		'intro' => __( 'Rust, een balkon met bergzicht en een dorp zonder massatoerisme.', 'la-randulina' ),
 		'url'   => '/nl/stellen/',
@@ -40,6 +43,7 @@ $lr_panelen = array(
 		'winter' => 'paneel-stellen-winter.jpg',
 	),
 	array(
+		'sleutel' => 'groepen',
 		'label' => __( 'Groepen', 'la-randulina' ),
 		'intro' => __( 'Huur de complete lodge af: twaalf kamers, helemaal voor jullie alleen.', 'la-randulina' ),
 		'url'   => '/nl/groepen/',
@@ -50,13 +54,13 @@ $lr_panelen = array(
 ?>
 <!-- wp:html -->
 <section
+	id="kiezen"
 	class="lr-panelen alignfull"
-	style="--lr-beeld-zomer: <?php echo $lr_beeld( 'hero-zomer.jpg' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>; --lr-beeld-winter: <?php echo $lr_beeld( 'hero-winter.jpg' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;"
 	aria-label="<?php esc_attr_e( 'Kies waarvoor je komt', 'la-randulina' ); ?>"
 >
 	<?php foreach ( $lr_panelen as $lr_paneel ) : ?>
 		<a
-			class="lr-paneel"
+			class="lr-paneel lr-paneel--<?php echo esc_attr( $lr_paneel['sleutel'] ); ?>"
 			href="<?php echo esc_url( $lr_paneel['url'] ); ?>"
 			style="--lr-paneel-zomer: <?php echo $lr_beeld( $lr_paneel['zomer'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>; --lr-paneel-winter: <?php echo $lr_beeld( $lr_paneel['winter'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;"
 		>
@@ -67,8 +71,5 @@ $lr_panelen = array(
 		</a>
 	<?php endforeach; ?>
 
-	<p class="lr-panelen__ontdek">
-		<a href="#inhoud"><?php esc_html_e( 'Ontdek de lodge', 'la-randulina' ); ?></a>
-	</p>
 </section>
 <!-- /wp:html -->

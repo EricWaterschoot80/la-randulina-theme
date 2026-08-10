@@ -66,6 +66,11 @@ img {
 	font-size: var(--wp--preset--font-size--small);
 }
 
+/* Ruime afstand tot het logo: die twee horen niet aan elkaar te plakken. */
+.lr-header .lr-kop__links {
+	margin-inline-start: clamp(2rem, 5vw, 5rem);
+}
+
 .lr-header .wp-block-navigation .wp-block-navigation-item__content {
 	text-decoration: none;
 }

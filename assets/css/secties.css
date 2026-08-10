@@ -33,9 +33,12 @@
 	margin-inline: auto;
 }
 
-/* De ondertitel mag groter dan de lopende tekst: hij hoort nog bij de kop. */
+/*
+ * De aanhef van het welkomstblok. De grote belofte staat nu in de opening
+ * bovenaan de pagina; dit is de zachtere tweede stem daaronder.
+ */
 .lr-intro__lead {
-	margin-block: 0 2em;
+	margin-block: 0 1.4em;
 	font-size: var(--wp--preset--font-size--large);
 	font-weight: 300;
 	line-height: 1.5;
@@ -154,29 +157,76 @@
 	}
 }
 
-/* --- Beeld naast tekst, afwisselend links en rechts --- */
+/* --- Beeld naast tekst, afwisselend links en rechts ---
+ *
+ * Het beeld krijgt bewust meer ruimte dan de tekst. Twee gelijke kolommen
+ * lezen als een spreadsheet; deze verhouding laat de foto het gesprek
+ * beginnen en de tekst het afmaken. De foto loopt bovendien tot voorbij de
+ * tekstkolom door, zodat de sectie ademt in plaats van netjes uitgelijnd
+ * te blijven binnen één kader.
+ */
 
 .lr-duo {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-	gap: clamp(2rem, 5vw, 5rem);
+	grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+	gap: clamp(2rem, 6vw, 6rem);
 	align-items: center;
+}
+
+.lr-duo__beeld {
+	position: relative;
 }
 
 .lr-duo img {
 	display: block;
 	inline-size: 100%;
 	block-size: auto;
-	border-radius: 3px;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: 2px;
+}
+
+/* Staande bronfoto's mogen hoger zijn: die verliezen anders hun onderwerp. */
+.lr-duo--staand img {
+	aspect-ratio: 4 / 5;
+}
+
+.lr-duo--omgekeerd {
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
 }
 
 .lr-duo--omgekeerd .lr-duo__beeld {
 	order: 2;
 }
 
-@media (width < 45rem) {
+/*
+ * De foto loopt aan de buitenzijde het kader uit. Op een 78rem brede pagina
+ * scheelt dat een paar honderd pixel beeld, en dat is precies het verschil
+ * tussen een illustratie bij de tekst en een foto waar je in kunt kijken.
+ */
+@media (width >= 64rem) {
+	.lr-duo__beeld {
+		margin-inline-start: calc(-1 * clamp(1rem, 5vw, 5rem));
+	}
+
+	.lr-duo--omgekeerd .lr-duo__beeld {
+		margin-inline-start: 0;
+		margin-inline-end: calc(-1 * clamp(1rem, 5vw, 5rem));
+	}
+}
+
+@media (width < 55rem) {
+	.lr-duo,
+	.lr-duo--omgekeerd {
+		grid-template-columns: 1fr;
+	}
+
 	.lr-duo--omgekeerd .lr-duo__beeld {
 		order: 0;
+	}
+
+	.lr-duo img {
+		aspect-ratio: 3 / 2;
 	}
 }
 

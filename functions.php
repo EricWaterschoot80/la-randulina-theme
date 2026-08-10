@@ -20,6 +20,7 @@ function la_randulina_assets(): void {
 		'la-randulina-fonts'    => 'assets/css/fonts.css',
 		'la-randulina-stijl'    => 'assets/css/stijl.css',
 		'la-randulina-secties'  => 'assets/css/secties.css',
+		'la-randulina-opening'  => 'assets/css/opening.css',
 		'la-randulina-panelen'  => 'assets/css/panelen.css',
 		'la-randulina-seizoen'  => 'assets/css/seizoen.css',
 		'la-randulina-onthul'   => 'assets/css/onthullen.css',

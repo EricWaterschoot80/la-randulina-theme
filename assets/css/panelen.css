@@ -28,9 +28,6 @@
 	margin-block-start: 0;
 	margin-inline: 0;
 	background-color: var(--wp--preset--color--contrast);
-	background-image: var(--lr-panelen-beeld);
-	background-size: cover;
-	background-position: center;
 	isolation: isolate;
 	overflow: clip;
 }
@@ -45,12 +42,19 @@
 	text-decoration: none;
 	color: var(--wp--preset--color--sneeuw);
 	/*
-	 * Deze basistint is niet cosmetisch. Het winterbeeld is een besneeuwd
-	 * dal en dus bijna wit; zonder deze laag valt witte tekst er niet meer
-	 * tegen af. De waarde is gekozen op het lichtste beeld dat we hebben,
-	 * niet op het donkerste.
+	 * Elk paneel toont zijn eigen doelgroep: gezinnen, wandelaars en fietsers,
+	 * stellen, groepen. Zo ziet een bezoeker meteen zichzelf terug in plaats
+	 * van vier uitsneden van hetzelfde landschap.
+	 *
+	 * De donkere laag eroverheen is niet cosmetisch: sommige beelden zijn
+	 * besneeuwd en dus bijna wit, en zonder die laag valt witte tekst er niet
+	 * tegen af. De waarde is geijkt op het lichtste beeld van de acht.
 	 */
-	background-color: rgb(15 22 18 / 0.3);
+	background-color: rgb(15 22 18 / 0.42);
+	background-image: var(--lr-paneel-beeld);
+	background-size: cover;
+	background-position: center;
+	background-blend-mode: multiply;
 	transition: background-color 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
@@ -71,7 +75,7 @@
  */
 .lr-panelen:has(.lr-paneel:hover) .lr-paneel:not(:hover),
 .lr-panelen:has(.lr-paneel:focus-visible) .lr-paneel:not(:focus-visible) {
-	background-color: rgb(15 22 18 / 0.62);
+	background-color: rgb(15 22 18 / 0.68);
 }
 
 /*
@@ -80,7 +84,7 @@
  */
 .lr-paneel:hover,
 .lr-paneel:focus-visible {
-	background-color: rgb(15 22 18 / 0.1);
+	background-color: rgb(15 22 18 / 0.16);
 }
 
 .lr-paneel:focus-visible {
@@ -116,24 +120,6 @@
 	translate: 0 0;
 }
 
-/* De uitnodiging onderaan, zoals op de referentiesite. */
-.lr-panelen__ontdek {
-	position: absolute;
-	inset-block-end: var(--wp--preset--spacing--40);
-	inset-inline: 0;
-	z-index: 2;
-	text-align: center;
-	pointer-events: none;
-}
-
-.lr-panelen__ontdek a {
-	pointer-events: auto;
-	color: var(--wp--preset--color--sneeuw);
-	font-size: var(--wp--preset--font-size--medium);
-	text-decoration-thickness: 1px;
-	text-underline-offset: 0.4em;
-}
-
 /*
  * Smalle schermen: geen hover beschikbaar, dus stapelen. Elk paneel toont
  * dan zijn eigen foto in plaats van een uitsnede van het gedeelde beeld.
@@ -142,17 +128,11 @@
 	.lr-panelen {
 		grid-template-columns: 1fr;
 		min-height: 0;
-		background-image: none;
 	}
 
 	.lr-paneel {
-		min-height: 15rem;
+		min-height: 17rem;
 		padding-block: var(--wp--preset--spacing--50);
-		background-color: rgb(15 22 18 / 0.42);
-		background-image: var(--lr-paneel-beeld);
-		background-size: cover;
-		background-position: center;
-		background-blend-mode: multiply;
 	}
 
 	.lr-paneel + .lr-paneel::before {
@@ -167,14 +147,6 @@
 		translate: 0 0;
 	}
 
-	.lr-panelen__ontdek {
-		position: static;
-		padding-block: var(--wp--preset--spacing--30);
-	}
-
-	.lr-panelen__ontdek a {
-		color: var(--wp--preset--color--primary);
-	}
 }
 
 @media (prefers-reduced-motion: reduce) {

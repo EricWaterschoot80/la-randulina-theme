@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="assets/css/basis.css">
 <link rel="stylesheet" href="assets/css/stijl.css">
 <link rel="stylesheet" href="assets/css/secties.css">
+<link rel="stylesheet" href="assets/css/opening.css">
 <link rel="stylesheet" href="assets/css/panelen.css">
 <link rel="stylesheet" href="assets/css/seizoen.css">
 <link rel="stylesheet" href="assets/css/onthullen.css">
@@ -24,7 +25,23 @@
 <a class="lr-skip" href="#inhoud">Naar de inhoud</a>
 
 <header class="lr-kop lr-header--over-beeld">
+
+	<a class="lr-kop__titel" href="/">
+		<img class="lr-kop__merk" src="assets/img/logo-merk-wit.svg" width="283" height="240" alt="">
+		<span class="lr-kop__naam">Familielodge<strong>La Randulina</strong></span>
+	</a>
+
 	<div class="lr-kop__links">
+		<nav class="lr-nav" aria-label="Hoofdmenu">
+			<a href="#persoonlijk">Over ons</a>
+			<a href="https://larandulina.com/nl/onzekamers/">Onze kamers</a>
+			<a href="#eten">Eten &amp; drinken</a>
+			<a href="#faq">Praktisch &amp; FAQ</a>
+			<a href="#contact">Contact</a>
+		</nav>
+	</div>
+
+	<div class="lr-kop__rechts">
 		<div class="lr-seizoenswissel" role="group" aria-label="Kies een seizoen">
 			<a class="lr-seizoenswissel__knop lr-seizoenswissel__knop--zomer" href="?seizoen=zomer" data-lr-seizoen="zomer" aria-pressed="true" title="Toon de zomer">
 				<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -41,26 +58,24 @@
 				<span class="screen-reader-text">Winter</span>
 			</a>
 		</div>
-
-		<nav class="lr-nav" aria-label="Hoofdmenu">
-			<a href="#persoonlijk">Over ons</a>
-			<a href="https://larandulina.com/nl/onzekamers/">Onze kamers</a>
-			<a href="#eten">Eten &amp; drinken</a>
-			<a href="#faq">Praktisch &amp; FAQ</a>
-			<a href="#contact">Contact</a>
-		</nav>
+		<a class="wp-element-button lr-kop__boeken" href="https://la-randulina.w.mytourist.cloud/nl/availability" target="_blank" rel="noopener">Beschikbaarheid</a>
 	</div>
 
-	<a class="lr-kop__titel" href="/">
-		<img class="lr-kop__merk" src="assets/img/logo-merk-wit.svg" width="283" height="240" alt="">
-		<span class="lr-kop__naam">Familielodge<strong>La Randulina</strong></span>
-	</a>
-
-	<a class="wp-element-button lr-kop__boeken" href="https://la-randulina.w.mytourist.cloud/nl/availability" target="_blank" rel="noopener">Beschikbaarheid</a>
 </header>
 
+
+<!-- ============ Opening ============ -->
+<section class="lr-opening">
+	<div class="lr-opening__binnen">
+		<span class="lr-opening__plaats">Ramosch · Unterengadin · Zwitserland</span>
+		<h1>Jouw actieve thuisbasis in de Zwitserse Alpen</h1>
+		<p class="lr-opening__belofte">De ongedwongen sfeer van een berghut, het comfort van een hotel.</p>
+		<a class="lr-opening__verder" href="#kiezen">Waarvoor kom je?</a>
+	</div>
+</section>
+
 <!-- ============ De vier doelgroeppanelen ============ -->
-<section class="lr-panelen" aria-label="Kies waarvoor je komt">
+<section class="lr-panelen" id="kiezen" aria-label="Kies waarvoor je komt">
 
 	<a class="lr-paneel lr-paneel--gezinnen" href="#gezinnen">
 		<span>
@@ -90,16 +105,13 @@
 		</span>
 	</a>
 
-	<p class="lr-panelen__ontdek"><a href="#inhoud">Ontdek de lodge</a></p>
 </section>
 
 <main id="inhoud">
 
 	<!-- ============ Welkom ============ -->
 	<section class="lr-binnen lr-intro lr-sectie" data-onthul>
-		<span class="lr-intro__subkop">Ramosch · Unterengadin · Zwitserland</span>
-		<h1>Jouw actieve thuisbasis in de Zwitserse Alpen</h1>
-		<p class="lr-intro__lead">De ongedwongen sfeer van een berghut, het comfort van een hotel.</p>
+		<h2 class="lr-intro__lead">Welkom in het zonnigste bergdorp van het Unterengadin</h2>
 
 		<p>Welkom bij Familielodge La Randulina in het idyllische, zonnige bergdorp Ramosch. Of je nu komt om met het hele gezin op avontuur te gaan, te hiken door ongerepte natuur, de ruigste mountainbiketrails te bedwingen of te genieten van pure wintermagie: bij ons vind je een warme, laagdrempelige plek waar je direct thuiskomt na een intensieve dag in de gezonde berglucht.</p>
 
