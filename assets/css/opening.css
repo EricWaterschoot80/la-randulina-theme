@@ -28,6 +28,42 @@
 	isolation: isolate;
 }
 
+/* --- Bewegend beeld ---
+ *
+ * In de winter draait er een loop van tien seconden achter de tekst: een
+ * dronebeeld boven het besneeuwde dorp met vallende sneeuw. De foto blijft
+ * eronder liggen als achtergrond, dus voordat de video geladen is — of als
+ * hij helemaal niet speelt — ziet de bezoeker gewoon het stilstaande beeld.
+ */
+
+.lr-opening__video {
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+	/* Zonder deze regel toont Safari een korte zwarte flits voor het eerste
+	   beeld verschijnt. */
+	background-color: var(--wp--preset--color--contrast);
+}
+
+/* Alleen in de winter: voor de zomer is er geen bewegend beeld. */
+.seizoen-zomer .lr-opening__video {
+	display: none;
+}
+
+/*
+ * Wie "verminder beweging" aan heeft staan, krijgt de foto. Een
+ * schermvullende video is precies het soort beweging waar die voorkeur
+ * voor bedoeld is.
+ */
+@media (prefers-reduced-motion: reduce) {
+	.lr-opening__video {
+		display: none;
+	}
+}
+
 /*
  * Een verloop van onderaf in plaats van een egale sluier over het hele beeld.
  * De tekst staat onderin, dus daar is verdonkering nodig; bovenin zou die de

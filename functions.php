@@ -82,6 +82,27 @@ function la_randulina_onthul_script(): void {
 add_action( 'wp_enqueue_scripts', 'la_randulina_onthul_script' );
 
 /**
+ * De video in de opening: pauzeert hem wanneer hij niet zichtbaar is.
+ */
+function la_randulina_openingsvideo_script(): void {
+	$pad      = '/assets/js/openingsvideo.js';
+	$absoluut = get_template_directory() . $pad;
+
+	if ( ! file_exists( $absoluut ) ) {
+		return;
+	}
+
+	wp_enqueue_script(
+		'la-randulina-openingsvideo',
+		get_template_directory_uri() . $pad,
+		array(),
+		(string) filemtime( $absoluut ),
+		array( 'strategy' => 'defer' )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'la_randulina_openingsvideo_script' );
+
+/**
  * Bepaal het actieve seizoen voor deze paginaweergave.
  *
  * Volgorde: expliciete keuze in de URL, dan de eerder opgeslagen keuze uit de

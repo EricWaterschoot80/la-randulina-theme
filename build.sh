@@ -16,7 +16,7 @@ cd "$(dirname "$0")"
 echo "→ assets kopiëren"
 rm -rf site/assets
 mkdir -p site/assets
-cp -R assets/css assets/js assets/fonts assets/img site/assets/
+cp -R assets/css assets/js assets/fonts assets/img assets/video site/assets/
 
 echo "→ site-eigen stylesheets toevoegen"
 cp site/css/*.css site/assets/css/

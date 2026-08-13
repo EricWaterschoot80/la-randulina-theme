@@ -20,6 +20,13 @@ $lr_beeld = static function ( string $bestand ): string {
 	class="lr-opening alignfull"
 	style="--lr-opening-zomer: <?php echo $lr_beeld( 'opening-zomer.jpg' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>; --lr-opening-winter: <?php echo $lr_beeld( 'opening-winter.jpg' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;"
 >
+	<video class="lr-opening__video"
+		src="<?php echo esc_url( get_theme_file_uri( 'assets/video/opening-winter.mp4' ) ); ?>"
+		poster="<?php echo esc_url( get_theme_file_uri( 'assets/img/opening-winter-poster.jpg' ) ); ?>"
+		width="1280" height="720"
+		autoplay muted loop playsinline preload="metadata"
+		aria-hidden="true" tabindex="-1"></video>
+
 	<div class="lr-opening__binnen">
 		<span class="lr-opening__plaats"><?php esc_html_e( 'Ramosch · Unterengadin · Zwitserland', 'la-randulina' ); ?></span>
 
