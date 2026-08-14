@@ -18,6 +18,14 @@
 	 * de gegenereerde basis.css die reset wél meebrengt.
 	 */
 	box-sizing: border-box;
+	/*
+	 * WordPress zet standaard blokafstand vóór het eerste blok in de pagina.
+	 * De koptekst ligt absoluut op documentpositie 0, dus met die marge begon
+	 * de opening 48px lager en stond het witte menu op de crèmekleurige
+	 * paginakleur in plaats van op de foto — onzichtbaar dus. Bij de panelen
+	 * was dit al verholpen; de opening kwam er later bij en miste het.
+	 */
+	margin-block-start: 0;
 	min-block-size: 100svh;
 	padding: var(--wp--preset--spacing--60) var(--wp--preset--spacing--30) var(--wp--preset--spacing--50);
 	background-color: var(--wp--preset--color--contrast);
