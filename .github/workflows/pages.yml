@@ -1,0 +1,60 @@
+name: Publiceren naar GitHub Pages
+
+# Zet de statische site online op een vaste URL, zodat John en Mary mee kunnen
+# kijken zonder dat er iets op een laptop hoeft te draaien.
+#
+# De site wordt hier gebouwd en niet uit de repo geserveerd: site/assets staat
+# in .gitignore omdat het gegenereerd wordt uit assets/ , site/css/ en
+# theme.json. Zonder deze bouwstap zou Pages een index.html zonder opmaak,
+# beeld en video tonen.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Eén publicatie tegelijk; een lopende afmaken in plaats van afbreken.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  bouwen:
+    name: Site bouwen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code ophalen
+        uses: actions/checkout@v4
+
+      - name: Node klaarzetten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Bouwen
+        run: bash build.sh
+
+      - name: Pages voorbereiden
+        uses: actions/configure-pages@v5
+
+      - name: Site inpakken
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  publiceren:
+    name: Online zetten
+    needs: bouwen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Publiceren
+        id: deploy
+        uses: actions/deploy-pages@v4
