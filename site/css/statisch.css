@@ -35,7 +35,7 @@
 	align-items: center;
 	gap: var(--wp--preset--spacing--30);
 	flex: 1;
-	margin-inline-start: clamp(2rem, 5vw, 5rem);
+	margin-inline-start: clamp(1rem, 1.6vw, 1.75rem);
 }
 
 .lr-kop__rechts {
@@ -49,7 +49,7 @@
 .lr-nav {
 	display: flex;
 	flex-wrap: wrap;
-	gap: clamp(1.2rem, 2vw, 2rem);
+	gap: clamp(0.7rem, 1vw, 1.05rem);
 	font-size: var(--wp--preset--font-size--medium);
 	font-weight: 500;
 }

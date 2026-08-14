@@ -61,14 +61,30 @@ img {
  * rij afbreekt. Hier zetten we een eigen, krappere maat.
  */
 .lr-header .wp-block-navigation {
-	--wp--style--block-gap: clamp(1.2rem, 2vw, 2rem);
-	gap: clamp(1.2rem, 2vw, 2rem);
+	--wp--style--block-gap: clamp(0.7rem, 1vw, 1.05rem);
+	gap: clamp(0.7rem, 1vw, 1.05rem);
 	font-size: var(--wp--preset--font-size--medium);
 }
 
-/* Ruime afstand tot het logo: die twee horen niet aan elkaar te plakken. */
+/* Afstand tot het logo: genoeg om los te staan, niet zoveel dat de zes
+   menu-items met de boekknop gaan vechten om de breedte. */
 .lr-header .lr-kop__links {
-	margin-inline-start: clamp(2rem, 5vw, 5rem);
+	margin-inline-start: clamp(1rem, 1.6vw, 1.75rem);
+	min-inline-size: 0;
+}
+
+/*
+ * De koptekstrij moet logo, zes menu-items, de seizoenswissel en de boekknop
+ * naast elkaar kwijt. Met de standaard blokafstand van 48px past dat op
+ * 1440px net niet en breekt de rij af. Deze maat is daarop geijkt.
+ */
+.lr-header .wp-block-group.alignwide {
+	gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+/* De boekknop mag in de koptekst krapper dan elders op de pagina. */
+.lr-header .wp-element-button {
+	padding-inline: 1.4em;
 }
 
 .lr-header .wp-block-navigation .wp-block-navigation-item__content {
