@@ -12,7 +12,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const wortel = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const thema = JSON.parse(readFileSync(resolve(wortel, 'theme.json'), 'utf8'));
+const thema = JSON.parse(readFileSync(resolve(wortel, 'theme/theme.json'), 'utf8'));
 
 const inst = thema.settings;
 const stijl = thema.styles;

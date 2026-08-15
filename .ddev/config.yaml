@@ -1,0 +1,37 @@
+# DDEV — de lokale WordPress voor dit project.
+#
+# Waarom dit bestand in de repo staat: hiermee draait iedereen exact dezelfde
+# omgeving. Mary hoeft niets af te stemmen over PHP- of MySQL-versies; ze
+# haalt de repo op en start. Dat is precies wat een grafisch programma als
+# LocalWP niet geeft, want dat bewaart zijn sites buiten je project.
+#
+# WordPress zelf staat NIET in de repo — dat is 50 MB die je nooit zelf
+# aanpast. `ddev setup` haalt het op. Wat de site tot déze site maakt staat
+# er wél in: het thema, en wp/blueprint.json.
+
+name: la-randulina
+type: wordpress
+
+# De webserver kijkt in wp/ , waar WordPress komt te staan. Het thema wordt
+# daar met een symlink in gehangen vanuit theme/ , zodat je in één map werkt
+# en git alleen het thema ziet.
+docroot: wp
+php_version: "8.3"
+
+webserver_type: nginx-fpm
+
+database:
+  type: mariadb
+  version: "10.11"
+
+# Node hebben we nodig voor de bouwstap van de statische site.
+nodejs_version: "20"
+
+# Symlinks volgen, anders ziet de webserver het gekoppelde thema niet.
+web_environment:
+  - WP_ENVIRONMENT_TYPE=local
+
+# Standaardpoorten laten kiezen door DDEV, zodat dit naast andere projecten
+# kan draaien zonder botsingen.
+router_http_port: "80"
+router_https_port: "443"

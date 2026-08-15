@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+## Description: WordPress installeren en het thema koppelen
+## Usage: setup
+## Example: "ddev setup"
+
+set -euo pipefail
+cd "$DDEV_APPROOT"
+
+echo "→ WordPress ophalen"
+if [ ! -f wp/wp-settings.php ]; then
+	ddev wp core download --path=wp --locale=nl_NL --force
+else
+	echo "   staat er al"
+fi
+
+echo "→ WordPress installeren"
+ddev wp core install \
+	--path=wp \
+	--url="$DDEV_PRIMARY_URL" \
+	--title="La Randulina" \
+	--admin_user=admin \
+	--admin_password=admin \
+	--admin_email=eric.waterschoot@gmail.com \
+	--skip-email 2>/dev/null || echo "   was al geïnstalleerd"
+
+echo "→ thema koppelen"
+# Een symlink in plaats van een kopie: zo werk je in theme/ en ziet WordPress
+# de wijziging meteen, zonder bouwstap of upload ertussen.
+mkdir -p wp/wp-content/themes
+rm -rf wp/wp-content/themes/la-randulina
+ln -s ../../../theme wp/wp-content/themes/la-randulina
+ddev wp theme activate la-randulina --path=wp
+
+echo "→ site inrichten"
+ddev wp option update blogname "La Randulina" --path=wp
+ddev wp option update blogdescription "De ongedwongen sfeer van een berghut, het comfort van een hotel" --path=wp
+ddev wp option update timezone_string "Europe/Zurich" --path=wp
+ddev wp option update blog_public 0 --path=wp
+ddev wp rewrite structure '/%postname%/' --path=wp
+
+echo "→ pagina's aanmaken"
+ddev wp eval-file .ddev/paginas.php --path=wp
+
+echo
+echo "✓ klaar"
+echo "  site:    $DDEV_PRIMARY_URL"
+echo "  beheer:  $DDEV_PRIMARY_URL/wp-admin  (admin / admin)"

@@ -27,8 +27,8 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT || 22 }}
-          local_path: './*'
+          local_path: './theme/*'
           remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
           sftp_only: true
           # Repo-eigen bestanden horen niet op de webserver thuis.
-          exclude_file: .git*, .github, README.md, .gitignore
+
