@@ -3,6 +3,7 @@
   "framework": null,
   "buildCommand": "bash build.sh",
   "outputDirectory": "site",
+  "installCommand": "echo 'Overgeslagen: de bouw draait op Node zelf. De devDependencies dienen alleen om WordPress lokaal te draaien.'",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [

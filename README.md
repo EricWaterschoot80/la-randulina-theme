@@ -1,159 +1,130 @@
 # La Randulina
 
-Nieuwe website voor Familielodge La Randulina in Ramosch (Unterengadin, Zwitserland).
+Alles voor de nieuwe website van Familielodge La Randulina in Ramosch (Unterengadin, Zwitserland) staat in deze ene map.
 
-Deze repo bevat **twee dingen die dezelfde ontwerpbasis delen**:
-
-| Map | Wat | Waar het draait |
-|---|---|---|
-| root (`theme.json`, `templates/`, `parts/`, `patterns/`) | WordPress blocktheme | Op WordPress-hosting met PHP |
-| `site/` | Statische site | Op Vercel |
-
-`assets/` (CSS, JS, fonts, beeld) wordt door allebei gebruikt. `build.sh` kopieert die naar `site/assets/` en genereert `basis.css` uit `theme.json`, zodat de twee nooit uit elkaar kunnen lopen: pas je een kleur aan in `theme.json`, dan verandert hij op beide plekken.
-
-```bash
-bash build.sh          # bouwt site/ , klaar om te deployen
 ```
+theme/          het WordPress blocktheme — de site zelf
+site/           statische variant, gaat naar GitHub Pages
+docs/           briefing van de klant, aangeleverde tekst, logo
+beeld/web/      62 foto's, verwerkt en klaar voor gebruik
+.ddev/          de lokale WordPress-omgeving
+wp/             WordPress zelf, door DDEV neergezet (niet in git)
+.playground/    blueprint voor de wegwerpversie
+tools/          generator die basis.css uit theme.json maakt
+```
+
+Wat er bewust **niet** in staat: WordPress core (vijftig megabyte die je nooit aanpast, `ddev setup` haalt het op), `node_modules`, de gegenereerde `site/assets`, en de originele camerabestanden — die 77 MB blijft in Dropbox als archief.
 
 ---
 
-## WordPress starten en inloggen
+## Lokaal draaien
 
-WordPress draait lokaal op je eigen Mac, zonder dat je PHP of MySQL hoeft te installeren. Alles zit in deze repo:
+Twee manieren. De eerste is de normale, de tweede is voor een snelle controle.
+
+### DDEV — de werkomgeving
+
+Hier bouw je in. Content blijft bewaard, en het is een echte MySQL met echte PHP, net als op de server straks.
+
+Eenmalig: [Docker Desktop](https://www.docker.com/products/docker-desktop/) en [DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/) installeren. Daarna:
 
 ```bash
-npm install
-npm start
+ddev start
+ddev setup
 ```
 
-Ga daarna naar **http://127.0.0.1:8881** — je bent dan al ingelogd als beheerder. Wil je handmatig inloggen, bijvoorbeeld na uitloggen:
+`ddev setup` haalt WordPress op, koppelt het thema en maakt alle twaalf pagina's aan met de juiste sjablonen. Draai je het nog eens, dan blijft bestaande inhoud staan.
 
 | | |
 |---|---|
-| Adres | http://127.0.0.1:8881/wp-admin |
-| Gebruikersnaam | `admin` |
-| Wachtwoord | `password` |
+| Site | https://la-randulina.ddev.site |
+| Beheer | https://la-randulina.ddev.site/wp-admin |
+| Inloggen | `admin` / `admin` |
 
-Dat is de standaard van WordPress Playground en prima voor een lokale ontwikkelomgeving. Zodra de site op een echte server komt te staan, komt daar een eigen account met een fatsoenlijk wachtwoord — en dat wachtwoord komt níét in deze repo.
+Het thema zit er met een **symlink** in: pas je iets aan in `theme/`, dan zie je het meteen. Geen bouwstap, geen upload.
 
-### Hoe dit werkt
+### Playground — de wegwerpversie
 
-`wp-playground-cli` draait PHP als WebAssembly met SQLite als database, dus er is geen Docker, geen MAMP en geen serverinstallatie nodig. `wp/blueprint.json` beschrijft de complete site: welk thema actief is, de site-instellingen en alle twaalf pagina's met hun sjablonen.
+```bash
+npm install && npm start
+```
 
-Dat betekent dat de héle WordPress-installatie reproduceerbaar in GitHub staat. Mary doet `npm install && npm start` en heeft binnen een minuut exact dezelfde site. Gooi je de omgeving weg, dan bouwt hij zichzelf opnieuw op.
+Draait WordPress met PHP als WebAssembly en SQLite — geen Docker nodig. Alles wat je erin aanklikt is weg zodra je stopt, dus niet om content in op te bouwen. Wel handig om te controleren of het thema het ook doet in een volledig schone installatie.
 
-Wat je in wp-admin aanpast — losse teksten, instellingen — leeft alleen lokaal. Wat blijvend moet zijn, hoort in het thema of in het blueprint.
+### Alleen de statische site
 
----
-
-## Van lokaal naar online
-
-Lokaal draaien is niet hetzelfde als online staan. Voor een site die het publiek kan bereiken:
-
-- **GitHub** bewaart code. Je logt daar in op de repo, niet op een website.
-- **Vercel** serveert kant-en-klare bestanden. Openbare URL om de site te bekijken, maar geen beheeromgeving.
-- **WordPress online** heeft PHP en een database nodig. Dat kan niet op Vercel en niet op GitHub.
-
-Twee wegen:
-
-### A. Statisch op Vercel, met een CMS dat via GitHub inlogt
-
-Voeg een headless CMS toe (Sveltia CMS of Decap CMS). Hoe dat werkt:
-
-1. Je gaat naar `larandulina.nl/admin` en logt in **met je GitHub-account** — dus met het account waar `eric.waterschoot@gmail.com` aan hangt.
-2. Je bewerkt teksten in een gewone editor.
-3. Opslaan schrijft een commit naar deze repo.
-4. Vercel ziet die commit en zet de site binnen een minuut live.
-
-Voordelen: geen serveronderhoud, geen updates, geen beveiligingslek, en alles staat versiebeheerd in GitHub. Mary kan hetzelfde doen met haar account. Nadeel: John moet ook een GitHub-account hebben, of we regelen een aparte inlog.
-
-### B. WordPress online op PHP-hosting
-
-Hetzelfde wat je nu lokaal draait, maar dan op een server met PHP en MySQL. Je krijgt het vertrouwde `wp-admin` met je eigen e-mailadres en wachtwoord, en John hoeft geen GitHub-account te hebben. Het thema uit deze repo gaat er ongewijzigd op; de GitHub Action in `.github/workflows/deploy.yml` staat er al voor klaar en heeft alleen de servergegevens nodig.
-
-**Mijn advies: A.** De site heeft geen webshop, geen inlogomgeving voor gasten en geen dagelijkse blogposts. Wat er beheerd moet worden zijn teksten, foto's en prijzen. Daar is een git-gebaseerd CMS ruim voldoende voor, en het is goedkoper en veiliger in onderhoud. De boekingen lopen toch al via MyTourist.
-
-Dit is nog niet ingebouwd — zeg het als je richting A wilt, dan zet ik het erin.
+```bash
+npm run site
+```
 
 ---
 
-## Deployen naar Vercel
+## Wat waar hoort
 
-`vercel.json` staat klaar. In Vercel:
+De regel die alles bepaalt: **wat in de database leeft, gaat nooit in git.** Pagina-inhoud en geüploade foto's synchroniseer je niet via deze repo. Alleen het thema en de opbouw van de site staan erin.
 
-1. **New Project** → deze GitHub-repo koppelen.
-2. Framework laat je op *Other* staan; build command en output directory komen uit `vercel.json`.
-3. Deploy. Elke push naar `main` zet vanzelf een nieuwe versie live, elke pull request krijgt een eigen preview-URL.
-
-De preview-URL van een pull request is precies wat je aan John kunt sturen om mee te kijken.
-
----
-
-## Samenwerken
-
-Eric en Mary werken allebei aan deze repo, via branches:
+Voor **code** kunnen Eric en Mary tegelijk werken, via branches:
 
 ```bash
 git switch -c mary/faq-styling
 git push -u origin mary/faq-styling
 ```
 
-Daarna een pull request openen. Niet direct naar `main` pushen — dat is wat live gaat.
+Voor **pagina-inhoud** kan dat niet: daar wint simpelweg de laatste die opslaat. Verdeel de pagina's expliciet; de tabel staat in `docs/projectbriefing.md`.
 
 ---
 
-## Wat er in zit
+## Online
 
-```
-theme.json              kleuren, typografie, ruimte — de complete ontwerpbasis
-templates/              front-page, page, page-doelgroep, page-breed, index, 404
-parts/                  header (met logo en seizoenswissel), footer
-patterns/               hero-panelen, logo, seizoenswissel, home-intro,
-                        home-persoonlijk, home-seizoen, home-inbegrepen,
-                        home-boeken, faq
-assets/css/             fonts, stijl, secties, panelen, seizoen
-assets/js/              seizoen.js
-assets/img/             hero, panelen, sectiebeeld, logo
-assets/fonts/           Fraunces en Karla, zelf gehost
-site/index.html         de statische homepagina
-site/css/               statisch.css — koptekst en voettekst voor de statische bouw
-tools/                  generator die basis.css uit theme.json maakt
-```
+| | |
+|---|---|
+| Statische site | https://ericwaterschoot80.github.io/la-randulina-theme/ |
+| Wordt gebouwd door | `.github/workflows/pages.yml` |
+
+Elke push naar `main` publiceert opnieuw. Een andere branch publiceren kan handmatig via de Actions-tab, mits die branch in de Pages-omgeving is toegestaan.
+
+`.github/workflows/deploy.yml` staat klaar om het thema via SFTP naar echte hosting te sturen, zodra die er is. Vijf secrets invullen en het loopt.
+
+---
+
+## Het ontwerp
+
+### De opening
+
+Eén schermvullend beeld met de belofte erop, en verder niets. Pas als je scrolt volgen de vier doelgroeppanelen. Die volgorde komt van gradonna.at: eerst sfeer, dan pas de keuze. In de winter draait er een dronevideo achter de tekst.
 
 ### De vier panelen
 
-Eén doorlopende foto, verdeeld in vier klikbare panelen naar de doelgroepen — naar het voorbeeld van gradonna.at. Hover op één paneel en de rest verduistert. Onder 60rem bestaat hover niet, dus daar worden het vier gestapelde blokken met elk een eigen foto.
+Gezinnen, Wandelaars & fietsers, Stellen, Groepen — elk met een eigen foto per seizoen. Beweeg je over één paneel, dan verduistert de rest. Onder 60rem worden het gestapelde blokken, want hover bestaat daar niet.
 
 ### De seizoenswissel
 
-Zon en sneeuwvlok in de koptekst, naar dasgerstlfamily.com:
+Zon en sneeuwvlok in de koptekst:
 
-1. PHP (of bij de statische versie: JavaScript) bepaalt het seizoen uit de URL `?seizoen=winter`, anders uit de cookie, anders uit de kalender — november tot en met april is winter.
-2. Het resultaat komt als class `seizoen-zomer` of `seizoen-winter` op het `html`-element, zodat de pagina meteen goed staat.
+1. PHP bepaalt het seizoen uit `?seizoen=winter`, anders uit de cookie, anders uit de kalender — november tot en met april is winter.
+2. Het resultaat komt als class op het `html`-element, server-side, zodat de pagina meteen goed staat.
 3. Klikken wisselt om zonder herladen. Zonder JavaScript volgt de browser de link en handelt de server het af.
 
-Inhoud koppel je aan een seizoen met `data-seizoen="winter"`. In de blokeditor staat de seizoensclass er bewust niet op, zodat een redacteur beide varianten kan zien.
+Inhoud koppel je aan een seizoen met `data-seizoen="winter"`. In de blokeditor staat die class er bewust niet op, zodat een redacteur beide varianten ziet.
+
+### Twee valkuilen die hier zijn opgelost
+
+**Relatieve `url()` in een CSS-variabele.** Die wordt opgelost ten opzichte van het stylesheet dat hem gebruikt, niet ten opzichte van de pagina — je krijgt dan een 404 met een dubbel pad, zonder foutmelding. De patronen gebruiken daarom `get_theme_file_uri()`.
+
+**Blokafstand vóór het eerste blok.** WordPress zet daar standaard ruimte, waardoor een absoluut geplaatste koptekst buiten het beeld eronder valt. `.lr-opening` en `.lr-panelen` zetten `margin-block-start: 0`.
 
 ### Het logo
 
-Het aangeleverde `larandulina-logo-wit.svg` bevat de naam als twaalf losse letters in het lettertype **Juice ITC**. Bezoekers hebben dat font niet, waardoor de letters over elkaar heen schuiven. Daarom gebruiken we `logo-merk-wit.svg` — alleen het beeldmerk, de zwaluw met edelweiss — en zetten we de naam in de pagina zelf in Fraunces.
+Het aangeleverde `docs/logo-origineel.svg` bevat de naam als losse letters in het lettertype Juice ITC, dat bezoekers niet hebben — zonder dat font schuiven ze over elkaar heen. We gebruiken alleen het beeldmerk (de zwaluw met edelweiss) en zetten de naam ernaast in Fraunces.
 
-**Vraag aan de ontwerper: lever een versie waarin de letters naar paden zijn omgezet.** Dan kan het logo weer als één geheel gebruikt worden.
-
-### Vaste externe links
-
-Boeking en kamerpagina's houden hun bestaande URL's. Ze staan op één plek, in `la_randulina_links()` in `functions.php`. In de inhoud kun je de shortcode gebruiken:
-
-```
-[lr_boeken tekst="Bekijk beschikbaarheid"]
-```
+**Vraag aan de ontwerper: lever een versie met de letters omgezet naar paden.**
 
 ---
 
 ## Nog te doen
 
-- Beslissen tussen weg A en B hierboven, want dat bepaalt de rest.
-- De overige pagina's: doelgroeppagina's, kamers, eten & drinken, praktisch & FAQ, contact.
-- Meertaligheid: de huidige site draait op WPML met Duits op de root, Nederlands op `/nl/` en Engels op `/en/`. Bij de statische route regelen we dat met aparte mappen per taal.
-- Redirects van oude naar nieuwe URL's.
-- Betere fotografie: van de 62 aangeleverde foto's zijn er maar twee professioneel én liggend. Zie de projectbriefing.
+- De elf onderliggende pagina's vullen met de teksten uit `docs/klanttekst-john.docx`
+- Contactformulier
+- Meertaligheid: de huidige site draait op WPML met Duits op de root, Nederlands op `/nl/`, Engels op `/en/`
+- Redirects van oude naar nieuwe URL's
+- Fotografie: van de 62 foto's zijn er maar twee professioneel én liggend. Zie de projectbriefing.
+- De chatbot met MyTourist-koppeling — fase 2

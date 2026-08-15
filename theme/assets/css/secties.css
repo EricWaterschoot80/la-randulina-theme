@@ -1,0 +1,374 @@
+/*
+ * Secties van de homepagina: introductie, het persoonlijke blok over de
+ * familie, en de terugkerende combinatie van beeld met tekst.
+ */
+
+/* --- Introductie onder de panelen --- */
+
+.lr-intro {
+	max-inline-size: 42rem;
+	margin-inline: auto;
+	text-align: center;
+}
+
+/*
+ * Het bovenschriftje. Klein, wijd gespatieerd en in een gedempte kleur —
+ * het benoemt de plek zonder de kop te beconcurreren. Fel oranje trok hier
+ * te veel aandacht weg van de foto's.
+ */
+.lr-intro__subkop {
+	display: block;
+	margin-block-end: 1.4em;
+	font-family: var(--wp--preset--font-family--tekst);
+	font-size: 0.75rem;
+	font-weight: 500;
+	letter-spacing: 0.24em;
+	text-transform: uppercase;
+	color: color-mix(in srgb, var(--wp--preset--color--contrast) 55%, transparent);
+}
+
+.lr-intro h1 {
+	margin-block: 0 0.65em;
+	max-inline-size: 18ch;
+	margin-inline: auto;
+}
+
+/*
+ * De aanhef van het welkomstblok. De grote belofte staat nu in de opening
+ * bovenaan de pagina; dit is de zachtere tweede stem daaronder.
+ */
+.lr-intro__lead {
+	margin-block: 0 1.4em;
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 300;
+	line-height: 1.5;
+	color: color-mix(in srgb, var(--wp--preset--color--contrast) 78%, transparent);
+}
+
+.lr-intro p + p {
+	margin-block-start: 1.4em;
+}
+
+/*
+ * Lopende tekst iets rustiger dan zwart, zoals op de referentiesite, en
+ * smaller dan het blok zelf. Gecentreerde tekst over de volle 42rem geeft
+ * regels van zo'n negentig tekens; dat leest slecht omdat het oog bij elke
+ * nieuwe regel opnieuw het begin moet zoeken.
+ */
+.lr-intro p:not(.lr-intro__lead) {
+	max-inline-size: 60ch;
+	margin-inline: auto;
+	color: color-mix(in srgb, var(--wp--preset--color--contrast) 86%, transparent);
+}
+
+/* --- Persoonlijk blok: de familie achter de lodge --- */
+
+.lr-persoonlijk {
+	display: grid;
+	grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+	gap: clamp(2rem, 6vw, 6rem);
+	align-items: center;
+}
+
+/*
+ * Twee foto's die elkaar deels overlappen: het pand groot, Tommy als
+ * kleiner beeld eroverheen. Dat leest als een fotocollage op tafel,
+ * wat beter past bij een familiebedrijf dan twee nette rechthoeken.
+ */
+.lr-persoonlijk__beeld {
+	position: relative;
+	padding-block-end: clamp(3rem, 7vw, 6rem);
+	padding-inline-end: clamp(2rem, 5vw, 4.5rem);
+}
+
+/*
+ * Op brede schermen loopt de foto links het kader uit tot precies aan de
+ * schermrand. Binnen de 78rem-kolom blijft het een plaatje bij een verhaal;
+ * zo wordt het een beeld waar je in kijkt.
+ *
+ * De marge is de afstand van de schermrand tot de linkerkant van deze kolom:
+ * de helft van wat er naast de 78rem-pagina overblijft, plus de binnenmarge
+ * van die pagina. Percentages werken hier niet — die rekenen tegen de breedte
+ * van de rasterkolom en niet tegen die van de pagina, waardoor de foto ruim
+ * tweehonderd pixel buiten beeld schoot.
+ *
+ * In WordPress komt de foto een pixel of dertig verder door dan op de
+ * statische site: het thema gebruikt useRootPaddingAwareAlignments, waardoor
+ * er nog een laag marge omheen zit die deze berekening niet kent. Op een foto
+ * van ruim zevenhonderd pixel breed valt dat niet op, en er ontstaat geen
+ * horizontale schuifbalk — maar het verklaart waarom de twee net verschillen.
+ */
+@media (width >= 64rem) {
+	.lr-persoonlijk__beeld {
+		margin-inline-start: calc(
+			-1 * (max(0px, (100vw - 78rem) / 2) + var(--wp--preset--spacing--30))
+		);
+	}
+}
+
+.lr-persoonlijk__beeld img {
+	display: block;
+	inline-size: 100%;
+	block-size: auto;
+	border-radius: 2px;
+}
+
+/* Een hogere uitsnede: het pand krijgt lucht en ondergrond mee. */
+.lr-persoonlijk__beeld > figure:first-child img {
+	aspect-ratio: 5 / 4;
+	object-fit: cover;
+	object-position: center 42%;
+}
+
+.lr-persoonlijk__beeld figure {
+	margin: 0;
+}
+
+.lr-persoonlijk__inzet {
+	position: absolute;
+	inset-block-end: 0;
+	inset-inline-end: 0;
+	inline-size: 44%;
+	box-shadow: 0 0 0 clamp(8px, 1vw, 14px) var(--wp--preset--color--base);
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+/*
+ * De inzet krijgt een eigen verhouding. Zonder dit bepaalt de hoogte van de
+ * bronfoto hoe ver hij uitsteekt, en dan schiet een staand portret boven de
+ * grote foto uit in plaats van er netjes overheen te vallen.
+ */
+.lr-persoonlijk__inzet img {
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+	object-position: center 30%;
+}
+
+.lr-persoonlijk h2 {
+	margin-block-start: 0;
+}
+
+/* De vier korte portretjes: John, Ilona, Luna, Tommy. */
+.lr-familie {
+	margin-block-start: var(--wp--preset--spacing--30);
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 1rem;
+}
+
+.lr-familie li {
+	padding-inline-start: 1rem;
+	border-inline-start: 2px solid var(--wp--preset--color--tertiary);
+}
+
+.lr-familie strong {
+	font-family: var(--wp--preset--font-family--kop);
+	font-size: var(--wp--preset--font-size--large);
+	font-weight: 400;
+	display: block;
+	margin-block-end: 0.15em;
+}
+
+.lr-familie p {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.6;
+}
+
+@media (width < 55rem) {
+	.lr-persoonlijk {
+		grid-template-columns: 1fr;
+	}
+
+	.lr-persoonlijk__beeld {
+		margin-inline-start: 0;
+		padding-block-end: 3rem;
+		padding-inline-end: 2rem;
+		max-inline-size: 34rem;
+	}
+}
+
+/* --- Beeld naast tekst, afwisselend links en rechts ---
+ *
+ * Het beeld krijgt bewust meer ruimte dan de tekst. Twee gelijke kolommen
+ * lezen als een spreadsheet; deze verhouding laat de foto het gesprek
+ * beginnen en de tekst het afmaken. De foto loopt bovendien tot voorbij de
+ * tekstkolom door, zodat de sectie ademt in plaats van netjes uitgelijnd
+ * te blijven binnen één kader.
+ */
+
+.lr-duo {
+	display: grid;
+	grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+	gap: clamp(2rem, 6vw, 6rem);
+	align-items: center;
+}
+
+.lr-duo__beeld {
+	position: relative;
+}
+
+.lr-duo img {
+	display: block;
+	inline-size: 100%;
+	block-size: auto;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border-radius: 2px;
+}
+
+/* Staande bronfoto's mogen hoger zijn: die verliezen anders hun onderwerp. */
+.lr-duo--staand img {
+	aspect-ratio: 4 / 5;
+}
+
+.lr-duo--omgekeerd {
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+}
+
+.lr-duo--omgekeerd .lr-duo__beeld {
+	order: 2;
+}
+
+/*
+ * De foto loopt aan de buitenzijde het kader uit. Op een 78rem brede pagina
+ * scheelt dat een paar honderd pixel beeld, en dat is precies het verschil
+ * tussen een illustratie bij de tekst en een foto waar je in kunt kijken.
+ */
+@media (width >= 64rem) {
+	.lr-duo__beeld {
+		margin-inline-start: calc(-1 * clamp(1rem, 5vw, 5rem));
+	}
+
+	.lr-duo--omgekeerd .lr-duo__beeld {
+		margin-inline-start: 0;
+		margin-inline-end: calc(-1 * clamp(1rem, 5vw, 5rem));
+	}
+}
+
+@media (width < 55rem) {
+	.lr-duo,
+	.lr-duo--omgekeerd {
+		grid-template-columns: 1fr;
+	}
+
+	.lr-duo--omgekeerd .lr-duo__beeld {
+		order: 0;
+	}
+
+	.lr-duo img {
+		aspect-ratio: 3 / 2;
+	}
+}
+
+.lr-duo h2 {
+	margin-block-start: 0;
+}
+
+/* --- Sectiekop --- */
+
+.lr-sectiekop {
+	max-inline-size: 40rem;
+	margin-inline: auto;
+	margin-block-end: var(--wp--preset--spacing--50);
+	text-align: center;
+}
+
+.lr-sectiekop h2 {
+	margin-block: 0 0.4em;
+}
+
+.lr-sectiekop p {
+	margin: 0;
+	color: color-mix(in srgb, var(--wp--preset--color--contrast) 78%, transparent);
+}
+
+/* --- Band met afwijkende achtergrond --- */
+
+.lr-band {
+	padding-block: var(--wp--preset--spacing--60);
+	background-color: var(--wp--preset--color--tertiary);
+}
+
+/* Op de band houden de kaartjes hun eigen lichte vlak. */
+.lr-band .lr-kenmerken li {
+	background-color: var(--wp--preset--color--base);
+}
+
+.lr-band--donker {
+	background-color: var(--wp--preset--color--contrast);
+	color: var(--wp--preset--color--base);
+}
+
+.lr-band--donker .lr-sectiekop p {
+	color: color-mix(in srgb, var(--wp--preset--color--base) 82%, transparent);
+}
+
+/*
+ * Knoppen zijn nu omlijnd in plaats van gevuld. Op de donkere band moeten
+ * lijn en tekst dus meekleuren, anders staat er donker op donker.
+ */
+.lr-band--donker .wp-element-button {
+	border-color: color-mix(in srgb, var(--wp--preset--color--base) 55%, transparent);
+	color: var(--wp--preset--color--base);
+}
+
+.lr-band--donker .wp-element-button:hover {
+	background-color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+
+/* --- Knoppenrij --- */
+
+.lr-knoppen {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.85rem;
+	justify-content: center;
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+/*
+ * De boekknop is de enige plek waar de lariks-kleur nog gevuld wordt
+ * gebruikt. Eén accent op de pagina, precies waar de bezoeker heen moet.
+ *
+ * De klasse staat hier bewust twee keer. WordPress zet zijn eigen knopstijl
+ * inline weg als `:root :where(.wp-element-button, .wp-block-button__link)`,
+ * en dat heeft precies dezelfde specificiteit als één klasse. Omdat die
+ * inline stijl later in het document staat, wint WordPress dan — de knop
+ * werd daardoor in WordPress transparant terwijl hij op de statische site
+ * wél gekleurd was. Verdubbelen tilt ons er net overheen.
+ */
+.lr-boekknop.lr-boekknop {
+	background-color: var(--wp--preset--color--secondary);
+	border-color: var(--wp--preset--color--secondary);
+	color: var(--wp--preset--color--base);
+}
+
+.lr-boekknop.lr-boekknop:hover {
+	background-color: transparent;
+	border-color: currentColor;
+	color: var(--wp--preset--color--contrast);
+}
+
+.lr-band--donker .lr-boekknop.lr-boekknop {
+	color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--secondary);
+}
+
+.lr-band--donker .lr-boekknop.lr-boekknop:hover {
+	background-color: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+
+/* --- Binnenmaat --- */
+
+.lr-binnen {
+	max-inline-size: 78rem;
+	margin-inline: auto;
+	padding-inline: var(--wp--preset--spacing--30);
+}

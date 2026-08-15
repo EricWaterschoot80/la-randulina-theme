@@ -9,6 +9,14 @@ node_modules/
 # Wordt door build.sh gegenereerd uit assets/ , site/css/ en theme.json.
 site/assets/
 
-# Samengestelde kopie van het thema om WordPress mee te draaien.
-# wp/blueprint.json hoort er wél in — dat beschrijft de hele site.
-wp/themes/
+# WordPress zelf: vijftig megabyte die je nooit aanpast. `ddev setup` haalt
+# het op. Wat de site tot déze site maakt staat wél in de repo: theme/ ,
+# .playground/blueprint.json en .ddev/ .
+wp/
+
+# Samengestelde themakopie voor de Playground-variant; blueprint.json blijft.
+.playground/themes/
+
+# DDEV maakt hier zijn eigen werkbestanden aan.
+.ddev/.*
+.ddev/*.yaml.bak

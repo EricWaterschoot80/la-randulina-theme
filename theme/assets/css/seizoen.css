@@ -1,0 +1,127 @@
+/*
+ * Zomer/winter-schakelaar.
+ *
+ * De keuze staat als class op het html-element (seizoen-zomer of
+ * seizoen-winter) en wordt server-side gezet, zodat de pagina meteen goed
+ * in beeld komt en niet eerst het verkeerde seizoen laat zien.
+ *
+ * In de blokeditor staat die class er bewust niet op: daar moet de
+ * redacteur beide varianten naast elkaar kunnen zien en bewerken.
+ */
+
+/* --- Inhoud die bij één seizoen hoort --- */
+
+.seizoen-zomer [data-seizoen="winter"],
+.seizoen-winter [data-seizoen="zomer"] {
+	display: none;
+}
+
+/* --- Beeldwissel van de opening ---
+ *
+ * LET OP: de url() in deze variabelen moet absoluut zijn. Een relatief pad
+ * wordt opgelost ten opzichte van dít stylesheet, niet ten opzichte van de
+ * pagina — dan zoekt de browser het beeld in assets/css/assets/img/ en krijg
+ * je een 404 zonder foutmelding, alleen een leeg vlak. De WordPress-patronen
+ * gebruiken daarom get_theme_file_uri(); de statische bouw zet de beelden
+ * rechtstreeks in statisch.css.
+ */
+
+.seizoen-zomer .lr-opening {
+	background-image: var(--lr-opening-zomer);
+}
+
+.seizoen-winter .lr-opening {
+	background-image: var(--lr-opening-winter);
+}
+
+/* --- Beeldwissel van de vier panelen --- */
+
+.seizoen-zomer .lr-panelen {
+	--lr-panelen-beeld: var(--lr-beeld-zomer);
+}
+
+.seizoen-winter .lr-panelen {
+	--lr-panelen-beeld: var(--lr-beeld-winter);
+}
+
+.seizoen-zomer .lr-paneel {
+	--lr-paneel-beeld: var(--lr-paneel-zomer);
+}
+
+.seizoen-winter .lr-paneel {
+	--lr-paneel-beeld: var(--lr-paneel-winter);
+}
+
+/* --- De schakelaar zelf --- */
+
+.lr-seizoenswissel {
+	display: inline-flex;
+	gap: 0.35rem;
+	align-items: center;
+}
+
+.lr-seizoenswissel__knop {
+	display: grid;
+	place-items: center;
+	inline-size: 2.75rem;
+	block-size: 2.75rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background-color: rgb(255 255 255 / 0.18);
+	color: currentColor;
+	cursor: pointer;
+	transition: background-color 240ms ease, color 240ms ease, scale 240ms ease;
+}
+
+.lr-seizoenswissel__knop:hover {
+	background-color: rgb(255 255 255 / 0.34);
+}
+
+.lr-seizoenswissel__knop:focus-visible {
+	outline: 3px solid currentColor;
+	outline-offset: 3px;
+}
+
+.lr-seizoenswissel__knop svg {
+	inline-size: 1.35rem;
+	block-size: 1.35rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.6;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* De actieve stand: gevuld, iets groter, en met aria-pressed als bron. */
+.lr-seizoenswissel__knop[aria-pressed="true"] {
+	scale: 1.06;
+}
+
+.seizoen-zomer .lr-seizoenswissel__knop--zomer,
+.seizoen-winter .lr-seizoenswissel__knop--winter {
+	background-color: var(--wp--preset--color--sneeuw);
+	color: var(--wp--preset--color--contrast);
+}
+
+.seizoen-winter .lr-seizoenswissel__knop--winter {
+	color: var(--wp--preset--color--winter);
+}
+
+.seizoen-zomer .lr-seizoenswissel__knop--zomer {
+	color: var(--wp--preset--color--secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.lr-seizoenswissel__knop {
+		transition-duration: 1ms;
+	}
+}
+
+/*
+ * Zonder JavaScript blijft de schakelaar werken: de knoppen zijn dan
+ * gewone links met ?seizoen=winter erachter, die PHP afhandelt.
+ */
+.lr-seizoenswissel a.lr-seizoenswissel__knop {
+	text-decoration: none;
+}

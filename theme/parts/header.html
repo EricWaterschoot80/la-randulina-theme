@@ -1,0 +1,47 @@
+<!-- wp:group {"tagName":"header","className":"lr-header","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"constrained","wideSize":"84rem"}} -->
+<header class="wp-block-group lr-header" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
+
+	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+	<div class="wp-block-group alignwide">
+
+		<!-- Logo eerst: het eerste wat je leest hoort van wie de site is te zijn,
+		     niet een menu-item. -->
+		<!-- wp:pattern {"slug":"la-randulina/logo"} /-->
+
+		<!-- wp:group {"className":"lr-kop__links","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group lr-kop__links">
+			<!-- Menu-items staan hier vast in plaats van in de database. Zo staat de
+			     navigatie in versiebeheer, en loopt hij niet mis bij het omzetten
+			     van een klassiek menu naar het navigatieblok. -->
+			<!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"left"}} -->
+				<!-- wp:navigation-link {"label":"Home","url":"/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Over ons","url":"/over-ons/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Onze kamers","url":"/onzekamers/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Eten &amp; drinken","url":"/eten-en-drinken/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Praktische info &amp; FAQ","url":"/praktische-info-faq/","kind":"custom","isTopLevelLink":true} /-->
+				<!-- wp:navigation-link {"label":"Contact &amp; route","url":"/contact-route/","kind":"custom","isTopLevelLink":true} /-->
+			<!-- /wp:navigation -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"lr-kop__rechts","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+		<div class="wp-block-group lr-kop__rechts">
+
+			<!-- wp:pattern {"slug":"la-randulina/seizoenswissel"} /-->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"lr-boekknop"} -->
+				<div class="wp-block-button lr-boekknop"><a class="wp-block-button__link wp-element-button lr-boekknop" href="https://la-randulina.w.mytourist.cloud/nl/availability" target="_blank" rel="noreferrer noopener">Boeken</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+
+		</div>
+		<!-- /wp:group -->
+
+	</div>
+	<!-- /wp:group -->
+
+</header>
+<!-- /wp:group -->
